@@ -5,7 +5,7 @@ import { notFound } from "./Handlers/ErrorManager.js";
 import { logger } from "./middleware/logger.cjs";
 import { corsOptions } from "./config/cors/corsOptions.js";
 import errorHandler from "./middleware/errorHandler.js";
-
+import ServerlessHttp from "serverless-http";
 // create our Express app
 const app = express();
 
@@ -48,4 +48,6 @@ app.use("/net/api/user/subscription", subscriptionRouter);
 app.use(errorHandler);
 app.use(notFound);
 
+
+const handlerApp= ServerlessHttp(app);
 export default app;

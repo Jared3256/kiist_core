@@ -627,3 +627,9 @@
 2024-11-01	19:20:33		3ccbdbbe-a886-4dc9-a937-a712de4db8bf		POST		/net/api/sessions/6724fe07d48b200874e75361/end		undefined
 2024-11-01	19:22:04		ffd39008-f13b-4441-b81f-ab27e1b0029e		POST		/net/api/sessions/create		undefined
 2024-11-01	19:22:07		7064e87f-973b-4109-baf9-c05882ebbdd4		POST		/net/api/sessions/6724fe07d48b200874e75361/end		undefined
+2025-05-19	14:24:47		8405553e-6a88-46b9-8aae-afa671a622ae		GET		/		undefined
+2025-05-19	14:24:47		39e3da8d-7eed-4cdb-a9a2-746d4a25a50b		GET		/public/css/style.css		undefined
+2025-05-19	14:24:52		11d4bfbd-45ed-4cb7-9037-0fff6fc97263		GET		/favicon.ico		undefined
+2025-05-19	14:29:09		38d7474b-9bfd-443e-9d96-db0ce93091cf		GET		/		undefined
+2025-05-19	14:29:09		48965354-38fd-4144-ba69-03c6ccc0caa4		GET		/public/css/style.css		undefined
+2025-05-19	15:15:09		0edeb3ca-740d-474e-8a70-0bab06affe10		GET		/		undefined
