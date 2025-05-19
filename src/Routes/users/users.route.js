@@ -10,4 +10,11 @@ const userRouter = express.Router();
  */
 userRouter.get("/listall", createUserController.listall);
 
+/**
+ * @description API get user route
+ * @description /api/v1/user/create
+ * @method POST
+ */
+userRouter.post("/create", createUserController.create);
+
 export default userRouter;

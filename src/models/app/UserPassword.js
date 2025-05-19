@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 const UserPasswordSchema = new mongoose.Schema(
   {
@@ -26,6 +26,10 @@ const UserPasswordSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    salt: {
+      type: String,
+      required: true,
+    },
     resetTokenUsedAt: Date,
     emailVerified: {
       type: Boolean,
@@ -50,4 +54,6 @@ UserPasswordSchema.methods.generateHash = function (salt, password) {
     return bcrypt.compareSync(salt + userPassword, this.password);
   };
   
-  module.exports = mongoose.model("UserPassword", UserPasswordSchema);
+  const UserPasswordModel =  mongoose.model("UserPassword", UserPasswordSchema);
+
+  export default UserPasswordModel;
