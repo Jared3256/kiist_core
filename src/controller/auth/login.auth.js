@@ -101,7 +101,7 @@ const LoginUser = asyncHandler(async (req, res) => {
     res
       .status(200)
       .cookie("kiist_token", refreshToken, {
-        maxAge: 12 * 60 * 60 * 1000,
+        maxAge: 24 * 60 * 60 * 1000,
         sameSite: "Lax",
         httpOnly: true,
         secure: false,

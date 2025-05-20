@@ -5,7 +5,8 @@ import jwt from "jsonwebtoken";
 const refreshToken = asyncHandler(async (req, res) => {
   const cookies = req.cookies;
 
-  if (!cookies.kiist_token) {
+  console.log("cookies", cookies);
+  if (!cookies?.kiist_token) {
     return res.status(401).json({
       message: "Unauthorized - no token found",
       success: false,
