@@ -7,7 +7,7 @@ const refreshToken = asyncHandler(async (req, res) => {
 
   if (!cookies.kiist_token) {
     return res.status(401).json({
-      message: "Unauthorized",
+      message: "Unauthorized - no token found",
       success: false,
     });
   }
@@ -29,7 +29,7 @@ const refreshToken = asyncHandler(async (req, res) => {
         email: decoded.UserInfo.email,
       }).exec();
       if (!foundUser) {
-        return res.status(401).json({ message: "Unauthorized" });
+        return res.status(401).json({ message: "Unauthorized - no user found" });
       }
 
       const accessToken = jwt.sign(
