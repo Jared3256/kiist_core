@@ -1334,3 +1334,10 @@
 2025-05-20	22:22:20		049462b3-18ab-4559-8f06-7bc70469a6f7		GET		/api/v1/auth/refresh		http://localhost:5173
 2025-05-20	22:22:34		8df3e72d-65e8-402c-ba87-a7fcb2ea0913		GET		/api/v1/auth/refresh		http://localhost:5173
 2025-05-20	22:22:34		182476ff-6c78-49dd-81b6-85e0b46d5551		GET		/api/v1/auth/refresh		http://localhost:5173
+2025-05-21	12:37:13		aaac59ca-4bec-47eb-a781-fad647f8fdf8		POST		/api/v1/auth/refresh		undefined
+2025-05-21	12:37:25		7d44e26f-89ad-42b4-a8c8-bca021f1337b		GET		/api/v1/auth/refresh		undefined
+2025-05-21	12:37:52		daf7a716-a0f7-4853-a7d0-b45986ab801e		POST		/api/v1/auth/login		undefined
+2025-05-21	12:39:19		d82b26f9-23cd-47cb-bbbd-7ac72309044d		POST		/api/v1/auth/logout		undefined
+2025-05-21	12:39:34		03d28403-7f63-4461-9926-54ee89256f7f		POST		/api/v1/auth/login		undefined
+2025-05-21	12:39:46		5115f2fa-4cd8-4495-b904-5254632df8ca		POST		/api/v1/auth/logout		undefined
+2025-05-21	12:39:53		21e7cd0a-7d7a-446f-8b6f-40791f570a9c		POST		/api/v1/auth/logout		undefined
