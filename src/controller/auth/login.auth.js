@@ -17,7 +17,6 @@ const LoginUser = asyncHandler(async (req, res) => {
     enabled: true,
   });
 
-  console.log("foundUser", foundUser);
   if (foundUser && foundUser.enabled === false) {
     return res.status(403).json({
       message: "User is not enabled",

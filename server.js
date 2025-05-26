@@ -10,8 +10,6 @@ import { logEvents } from "./src/middleware/logger.cjs";
 const PORT = process.env.NODE_ENV === "development" ? 3500 : process.env.PORT;
 connectDB();
 
-console.log(process.env.NODE_ENV);
-
 // Start the server!
 
 mongoose.connection.once("open", () => {

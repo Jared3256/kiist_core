@@ -1,19 +1,19 @@
-import nodemailer from 'nodemailer'
+import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
-    port: 587,
-    auth: {
-        user: 'rudolph66@ethereal.email',
-        pass: 'QgNGYnrcBkHNQ7FAae'
-    }
+  host: "smtp.ethereal.email",
+  port: 587,
+  auth: {
+    user: "rudolph66@ethereal.email",
+    pass: "QgNGYnrcBkHNQ7FAae",
+  },
 });
 
 const mailOptions = {
   from: "rudolph66@ethereal.email",
   to: "odhiambojared566@gmail.com",
-  subject: 'Welcome to [Company Name]!',
-    html: `<!DOCTYPE html>
+  subject: "Welcome to [Company Name]!",
+  html: `<!DOCTYPE html>
       <html lang="en">
       <head>
         <meta charset="UTF-8">
@@ -37,12 +37,10 @@ const mailOptions = {
         </div>
       </body>
       </html>`,
-  };
+};
 
 transporter.sendMail(mailOptions, (error, info) => {
   if (error) {
-    console.error("Error sending email: ", error);
   } else {
-    console.log("Email sent: ", info.response);
   }
 });
