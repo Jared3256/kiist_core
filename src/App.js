@@ -1,17 +1,22 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import { notFound } from "./Handlers/ErrorManager.js";
-import { logger } from "./middleware/logger.cjs";
-import { corsOptions } from "./config/cors/corsOptions.js";
+import {notFound} from "./Handlers/ErrorManager.js";
+import {logger} from "./middleware/logger.cjs";
+import {corsOptions} from "./config/cors/corsOptions.js";
 import errorHandler from "./middleware/errorHandler.js";
-import ServerlessHttp from "serverless-http";
-import { rootRouter } from "./Routes/root.cjs";
+import {rootRouter} from "./Routes/root.cjs";
 import systemRouter from "./Routes/system.route.js";
+import morgan from "morgan";
+import http from "http";
+import {Server as SocketIo} from 'socket.io';
+
+
 // create our Express app
 const app = express();
 
 app.use(logger);
+app.use(morgan("dev"));
 
 app.use(cors(corsOptions));
 
@@ -27,5 +32,17 @@ app.use("/api/v1", systemRouter);
 app.use(errorHandler);
 app.use(notFound);
 
-const handlerApp = ServerlessHttp(app);
-export default app;
+const serverApp = http.createServer(app);
+
+// socket IO connection
+const io = new SocketIo(serverApp, {cors: {origin: '*'}});
+
+io.on('connection', (socket) => {
+    console.log(`Socket ${socket.id} connected`);
+    socket.on('join-wait', (UserId) => {
+        console.log("USer Id", UserId,)
+        socket.join(UserId);
+    });
+});
+
+export default serverApp;
