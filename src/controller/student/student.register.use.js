@@ -1,13 +1,12 @@
 import asyncHandler from "express-async-handler"
-import userModel from "../../models/app/user.model.js";
-import req from "express/lib/request.js";
+import UserModel from "../../models/app/user.model.js";
 import {generate as uniqueId} from "shortid";
 import bcrypt from "bcryptjs";
 import generateVerificationToken from "../../utils/generateVerificationCode.js";
 import {addHours} from "date-fns";
 import UserPassword from "../../models/app/UserPassword.js";
 
-const RegisterStudentAsUser = asyncHandler(async (email, password, gender, fullname, role, res) => {
+const RegisterStudentAsUser = asyncHandler(async (email, regNumber, password, gender, fullname, role, res) => {
     const enabled = false,
         student_role = role || "student"
 
@@ -20,16 +19,15 @@ const RegisterStudentAsUser = asyncHandler(async (email, password, gender, fulln
     }
 
     // Find if user already exists
-    const existingUser = await userModel.findOne({
+    const existingUser = await UserModel.findOne({
         email: email,
         removed: false,
     });
     if (existingUser) {
-
         return res.status(400).json({
             success: false,
             result: null,
-            message: "An account with this email already exists. Kindly login",
+            message: "An account with this information already exists. Kindly login",
         });
     }
 
@@ -37,9 +35,10 @@ const RegisterStudentAsUser = asyncHandler(async (email, password, gender, fulln
 
     const passwordHash = bcrypt.hashSync(salt + password);
 
-    const result = await new userModel({
+    const result = await new UserModel({
         removed: false,
         email,
+        regNumber,
         password,
         enabled,
         gender,

@@ -10,12 +10,23 @@ import PasswordModel from "../../models/app/UserPassword.js";
 
 const LoginUser = asyncHandler(async (req, res) => {
     const {email, password} = req.body;
+    let foundUser = {}
 
-    const foundUser = await UserModel.findOne({
-        email: email,
-        removed: false,
-        enabled: true,
-    });
+    if (String(email).endsWith(".com")) {
+        foundUser = await UserModel.findOne({
+            email: email,
+            removed: false,
+            enabled: true,
+        });
+    } else {
+        console.log(email, password)
+        foundUser = await UserModel.findOne({
+            regNumber: email,
+            removed: false,
+            enabled: true,
+        });
+    }
+
 
     if (foundUser && foundUser.enabled === false) {
         return res.status(403).json({
@@ -25,7 +36,7 @@ const LoginUser = asyncHandler(async (req, res) => {
 
     if (!foundUser) {
         return res.status(401).json({
-            message: "Invalid email or password",
+            message: "Invalid email or password. Make sure your email is verified",
         });
     }
 
@@ -75,6 +86,7 @@ const LoginUser = asyncHandler(async (req, res) => {
                     id: foundUser._id,
                     removed: foundUser.removed,
                     enabled: foundUser.enabled,
+                    regNumber: foundUser.regNumber,
                     email: foundUser.email,
                     fullname: foundUser.fullname,
                     created: foundUser.created,
@@ -93,6 +105,7 @@ const LoginUser = asyncHandler(async (req, res) => {
                     id: foundUser._id,
                     removed: foundUser.removed,
                     enabled: foundUser.enabled,
+                    regNumber: foundUser.regNumber,
                     email: foundUser.email,
                     fullname: foundUser.fullname,
                     created: foundUser.created,

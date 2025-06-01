@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import studentProfileModel from "../../models/student/student.js";
 import RegisterStudentAsUser from "./student.register.use.js";
+import RegistrationNumberAllotment from "./utils/RegistrationNumberAllotment.js";
 
 const submitStudentApplication = asyncHandler(async (req, res) => {
     const {id} = req.params;
@@ -14,6 +15,7 @@ const submitStudentApplication = asyncHandler(async (req, res) => {
     }
 
     const profile = await studentProfileModel.findById(id);
+
     if (!profile) {
         return res.status(412).json({
             success: false,
@@ -31,11 +33,23 @@ const submitStudentApplication = asyncHandler(async (req, res) => {
     }
     // e.g. set a flag or move profile to “active” collection, etc.
     profile.isComplete = true;
-    await profile.save();
+    const profileRes = await profile.save()
+    console.log("Student Result ", profileRes)
+
+    // // Generate a new Registration for the student
+    if (!profile.regNumberGiven) {
+        const regNumber = await RegistrationNumberAllotment(profile.academicBackground.level, res)
+
+        profile.registrationNumber = regNumber;
+        profile.regNumberGiven = true
+        await profile.save();
+    }
+
 
     // Call StudentUser
     await RegisterStudentAsUser(
         profile.contactAddress.email,
+        profile.registrationNumber,
         profile.personalDetails.nationalId,
         profile.personalDetails.gender,
         profile.personalDetails.firstname + " " + profile.personalDetails.middlename + " " + profile.personalDetails.lastname,

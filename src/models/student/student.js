@@ -126,6 +126,12 @@ const academicBackgroundSchema = new mongoose.Schema({
     intendedCourse: {
         type: String, required: true
     },
+    level: {
+        type: String,
+        default: "DIP",
+        enum: ["DIP", "CER", "ART"],
+        required: true,
+    },
     modeOfStudy: {
         type: String,
         required: true,
@@ -191,7 +197,13 @@ const studentProfileSchema = new mongoose.Schema({
     role: {
         type: String,
         default: "student",
-    }
+    },
+    registrationNumber: {
+        type: String,
+        unique: true,
+    },
+    regNumberGiven: {type: Boolean, default: false}
+
 }, {
     timestamps: true,
 });

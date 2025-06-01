@@ -10,7 +10,8 @@ const UpdateStudentAcademicBackground = asyncHandler(async (req, res) => {
         gradeAggregate,
         previousInstitution,
         intendedCourse,
-        modeOfStudy
+        modeOfStudy,
+        level
     } = req.body;
 
     if (String(id).length !== 24) {
@@ -49,7 +50,8 @@ const UpdateStudentAcademicBackground = asyncHandler(async (req, res) => {
                     gradeAggregate,
                     previousInstitution,
                     intendedCourse,
-                    modeOfStudy
+                    modeOfStudy,
+                    level
                 }
             }
         },
