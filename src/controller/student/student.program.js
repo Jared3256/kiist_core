@@ -1,14 +1,9 @@
 import asyncHandler from "express-async-handler";
 import studentProfileModel from "../../models/student/student.js";
 
-const UpdateStudentAcademicBackground = asyncHandler(async (req, res) => {
+const UpdateStudentProgramSelection = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const {
-    secondarySchool,
-    college,
-    proffessionalQualification,
-    academicInformation,
-  } = req.body;
+  const { main, alternative } = req.body;
 
   if (String(id).length !== 24) {
     return res.status(412).json({
@@ -18,23 +13,22 @@ const UpdateStudentAcademicBackground = asyncHandler(async (req, res) => {
     });
   }
 
-  if (!secondarySchool) {
+  if (!main) {
     return res.status(412).json({
-      message: "Crucial academic data is missing",
+      message: "Crucial program data is missing",
       success: false,
       data: null,
     });
   }
   // Check the authenticity of programming
   if (
-    !secondarySchool.name ||
-    !secondarySchool.startDate ||
-    !secondarySchool.endDate ||
-    !secondarySchool.qualificationObtained ||
-    !secondarySchool.finalGrade
+    !main.department ||
+    !main.program ||
+    !main.studyMode ||
+    !main.intendedStartTerm
   ) {
     return res.status(412).json({
-      message: "Crucial academic data is missing",
+      message: "Crucial program data is missing",
       success: false,
       data: null,
     });
@@ -44,11 +38,9 @@ const UpdateStudentAcademicBackground = asyncHandler(async (req, res) => {
     id,
     {
       $set: {
-        academicBackground: {
-          secondarySchool,
-          college,
-          proffessionalQualification,
-          academicInformation,
+        programSelection: {
+          main,
+          alternative,
         },
       },
     },
@@ -64,9 +56,9 @@ const UpdateStudentAcademicBackground = asyncHandler(async (req, res) => {
   }
   return res.status(200).json({
     success: true,
-    message: "successfully modified academic background",
+    message: "successfully modified Program Selection",
     data: result,
   });
 });
 
-export default UpdateStudentAcademicBackground;
+export default UpdateStudentProgramSelection;

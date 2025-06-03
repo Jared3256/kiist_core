@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const environment = process.env.NODE_ENV || "development";
+
 const system_data = {
   PORT: process.env.PORT || 3500,
   DEVELOPMENT_DATABASE_URI: process.env.DEVELOPMENT_DATABASE_URI,
