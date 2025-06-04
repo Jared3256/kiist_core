@@ -17,8 +17,15 @@ const system_data = {
     String(environment).match("development")
       ? process.env.DEV_CALLBACK_URI
       : "/api/v1/payment/daraja_callback"
-        }`,
-  SHORT_CODE :process.env.SHORT_CODE
+  }`,
+  SHORT_CODE: process.env.SHORT_CODE,
+  FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
+  FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN,
+  FIREBASE_PROJECT_ID: process.env.FIREBASE_PROJECT_ID,
+  FIREBASE_STORAGE_BUCKETS: process.env.FIREBASE_STORAGE_BUCKETS,
+  FIREBASE_MESSAGING_SENDER_ID: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  FIREBASE_APP_ID: process.env.FIREBASE_APP_ID,
+  FIREBASE_MEASUREMENT_ID: process.env.FIREBASE_MEASUREMENT_ID,
 };
 
 export default system_data;

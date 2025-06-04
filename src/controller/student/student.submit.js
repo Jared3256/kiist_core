@@ -23,7 +23,7 @@ const submitStudentApplication = asyncHandler(async (req, res) => {
             message: "Id does not match any student profile"
         })
     }
-    const sections = ['personalDetails', 'contactAddress', 'academicBackground', 'paymentInfo'];
+    const sections = ['personalDetails', 'contactAddress', 'academicBackground',"programSelection"]//, 'paymentInfo'];
     const missing = sections.filter(s => !profile[s]);
     if (missing.length) {
         return res.status(400).json({
@@ -38,7 +38,7 @@ const submitStudentApplication = asyncHandler(async (req, res) => {
 
     // // Generate a new Registration for the student
     if (!profile.regNumberGiven) {
-        const regNumber = await RegistrationNumberAllotment(profile.academicBackground.level, res)
+        const regNumber = await RegistrationNumberAllotment(profile.programSelection.level, res)
 
         profile.registrationNumber = regNumber;
         profile.regNumberGiven = true

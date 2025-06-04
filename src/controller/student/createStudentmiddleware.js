@@ -5,6 +5,7 @@ import UpdateStudentPaymentInfo from "./student.payment.js";
 import submitStudentApplication from "./student.submit.js";
 import UpdateStudentProgramSelection from "./student.program.js";
 import UpdateStudentStatement from "./student.statement.js";
+import UploadStudentFiles from "./student.files.js";
 
 const createStudentMiddleware = () => {
   const methods = {};
@@ -15,7 +16,8 @@ const createStudentMiddleware = () => {
   methods.payment = (req, res) => UpdateStudentPaymentInfo(req, res);
   methods.submit = (req, res) => submitStudentApplication(req, res);
   methods.program = (req, res) => UpdateStudentProgramSelection(req, res);
-  methods.statement =  (req, res)=> UpdateStudentStatement(req, res)
+  methods.statement = (req, res) => UpdateStudentStatement(req, res)
+  methods.files = (req, res)=> UploadStudentFiles(req, res)
   return methods;
 };
 

@@ -214,6 +214,13 @@ const programSelectionSchema = new mongoose.Schema({
     reason: String,
     careerGoals: String,
   },
+  level: {
+    type: String,
+    required: true,
+    default: "DIP",
+    enum: ["DIP", "CER", "ART"],
+    trim: true,
+  },
 });
 
 const personalStatementSchema = new mongoose.Schema({

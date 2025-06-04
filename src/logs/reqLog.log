@@ -1567,3 +1567,14 @@
 2025-06-03	22:51:33		1c2ca305-5d13-4691-90d0-2d1e13fbeeea		PUT		/api/v1/student/683f42389c5b70e626589b02/statement		undefined
 2025-06-03	22:52:36		eafed95e-378d-4fd3-ab61-14c05311738d		PUT		/api/v1/student/683f42389c5b70e626589b02/statement		undefined
 2025-06-03	22:52:40		c788d907-0b4b-4b67-8821-5f0585b8b319		PUT		/api/v1/student/683f42389c5b70e626589b02/statement		undefined
+2025-06-03	23:38:16		e4e394cb-b60e-42c0-9ff8-f77f1ea69392		POST		/api/v1/student/683f42389c5b70e626589b02/uploads		undefined
+2025-06-04	00:09:45		3911cbbb-c64c-41c9-9762-2c9b6034968c		POST		/api/v1/student/683f42389c5b70e626589b02/upload		undefined
+2025-06-04	00:09:45		7f237977-71d9-4d01-a864-ffd73450f934		POST		/api/v1/student/683f42389c5b70e626589b02/upload		undefined
+2025-06-04	00:09:51		89e099dd-2008-446c-9934-edeb90e1e572		GET		/uploads/1748984985402-825911562.jpeg		undefined
+2025-06-04	00:09:51		5151db84-111d-4624-bf5e-8db634683a84		GET		/favicon.ico		undefined
+2025-06-04	10:25:31		3c9079d8-c5b4-4833-b76d-4c06255e5282		POST		/api/v1/student/683f42389c5b70e626589b02/upload		undefined
+2025-06-04	10:26:00		e580c920-e4b2-4a3a-ac90-95e9ab6e4f24		POST		/api/v1/student/683f42389c5b70e626589b02/upload		undefined
+2025-06-04	10:27:57		ea9996cf-c4a4-4b74-bb21-e1c4fcc5e800		POST		/api/v1/student/683f42389c5b70e626589b02/upload		undefined
+2025-06-04	10:35:19		bdaac69a-dfad-41a9-b080-7e8c4f49c548		POST		/api/v1/student/683f42389c5b70e626589b02/upload		undefined
+2025-06-04	11:28:07		a73b0e67-2435-415b-92c9-66ff258d3f2b		PUT		/api/v1/student/683f42389c5b70e626589b02/program		undefined
+2025-06-04	11:30:52		418dc4e9-58fd-4767-975f-f3585856e87c		GET		/api/v1/student/683f42389c5b70e626589b02/submit		undefined
