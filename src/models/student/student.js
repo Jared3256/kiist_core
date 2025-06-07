@@ -1,4 +1,3 @@
-
 import mongoose from "mongoose";
 
 const personalDetailSchema = new mongoose.Schema({
@@ -104,7 +103,7 @@ const contactAddressSchema = new mongoose.Schema({
     },
     email: {
       trim: true,
-      required: false,
+
       type: String,
       lowercase: true,
       match: [
