@@ -60,6 +60,13 @@ const RegisterNewStudent = asyncHandler(async (req, res) => {
     ) {
       await studentProfileModel.findByIdAndDelete(foundStudent._id);
     }
+    else {
+      return res.status(412).json({
+        message: "kindly login to track to the system to track your application.",
+        success: false,
+        data: null,
+      });
+    }
   }
 
   // Check the length of the national Id
