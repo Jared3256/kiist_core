@@ -49,14 +49,17 @@ const RegisterNewStudent = asyncHandler(async (req, res) => {
   const foundStudent = await studentProfileModel.findOne({
     "personalDetails.nationalId": nationalId,
   });
-  console.log("found student in the database", foundStudent);
 
   if (foundStudent) {
-    return res.status(409).json({
-      success: false,
-      data: null,
-      message: "Student with that nationalId is already registered",
-    });
+    if (
+      !foundStudent.personalDetails ||
+      !foundStudent.contactAddress ||
+      !foundStudent.programSelection ||
+      !foundStudent.personalStatement ||
+      !foundStudent.documentInfo
+    ) {
+      await studentProfileModel.findByIdAndDelete(foundStudent._id);
+    }
   }
 
   // Check the length of the national Id

@@ -3,9 +3,8 @@ import studentProfileModel from "../../models/student/student.js";
 
 const UpdateStudentStatement = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const { statement, additionalInfo } = req.body;
+  const { statement, additionalInfo, special, honors } = req.body;
 
-    console.log(req.body)
   if (String(id).length !== 24) {
     return res.status(412).json({
       message: "Invalid Student Id received",
@@ -21,7 +20,6 @@ const UpdateStudentStatement = asyncHandler(async (req, res) => {
       data: null,
     });
   }
-  
 
   const result = await studentProfileModel.findByIdAndUpdate(
     id,
@@ -29,7 +27,11 @@ const UpdateStudentStatement = asyncHandler(async (req, res) => {
       $set: {
         personalStatement: {
           statement,
-          additionalInfo,
+          additionalInfo: {
+            curricular: additionalInfo,
+            honors,
+            circumstances: special,
+          },
         },
       },
     },

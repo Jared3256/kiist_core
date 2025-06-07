@@ -1,3 +1,4 @@
+
 import mongoose from "mongoose";
 
 const personalDetailSchema = new mongoose.Schema({
@@ -105,7 +106,6 @@ const contactAddressSchema = new mongoose.Schema({
       trim: true,
       required: false,
       type: String,
-      unique: true,
       lowercase: true,
       match: [
         /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
@@ -153,13 +153,24 @@ const academicBackgroundSchema = new mongoose.Schema({
       trim: true,
       uppercase: true,
     },
+    transcript: {
+      type: String,
+      trim: true,
+      required: true,
+      lowercase: true,
+    },
   },
   college: {
     name: {
       type: String,
       trim: true,
     },
+    location: String,
     startDate: {
+      type: String,
+      trim: true,
+    },
+    endDate: {
       type: String,
       trim: true,
     },
@@ -176,10 +187,13 @@ const academicBackgroundSchema = new mongoose.Schema({
       trim: true,
       uppercase: true,
     },
+    transcript: {
+      type: String,
+    },
   },
   proffessionalQualification: {
-    type: String,
-    trim: false,
+    certifications: String,
+    certificationDocuments: String,
   },
   academicInformation: String,
 });
@@ -230,29 +244,31 @@ const personalStatementSchema = new mongoose.Schema({
   },
   additionalInfo: {
     curricular: String,
-    awards: String,
+    honors: String,
     circumstances: String,
   },
 });
-const documentSchema = new mongoose.Schema(
-  {
-    photoUrl: {
-      type: String,
-      required: true,
-    },
-    idScanUrl: {
-      type: String,
-      required: true,
-    },
-    certificateUrl: {
-      type: String,
-      required: true,
-    },
+
+const documentSchema = new mongoose.Schema({
+  identificationDocument: {
+    type: String,
+    required: true,
   },
-  {
-    _id: false,
-  }
-);
+  passportPhoto: {
+    type: String,
+    required: true,
+  },
+  academicCertificates: {
+    type: String,
+    required: true,
+  },
+  academicTranscripts: String,
+  recommendationLetters: String,
+  cvResume: String,
+  englishProficiency: String,
+  additionalDocuments: String,
+  documentNotes: String,
+});
 
 const paymentInfoSchema = new mongoose.Schema({
   registrationFee: {
@@ -284,6 +300,7 @@ const studentProfileSchema = new mongoose.Schema(
     programSelection: { type: programSelectionSchema },
     personalStatement: { type: personalStatementSchema },
     paymentInfo: { type: paymentInfoSchema, required: false },
+    documentInfo: { type: documentSchema, required: false },
     isComplete: {
       type: Boolean,
       default: false,

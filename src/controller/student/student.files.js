@@ -1,7 +1,8 @@
 import asyncHandler from "express-async-handler";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import createError from "http-errors";
-import { firestore } from "../../config/firebase/firebase.config.js";
+import {  PutObjectCommand } from "@aws-sdk/client-s3";
+import system_data from "../../config/environment/env.constants.js";
+import crypto from "crypto"
+import {s3} from "../../config/aws/aws.config.js"
 
 const UploadStudentFiles = asyncHandler(async (req, res) => {
   const { id } = req.params;
@@ -16,17 +17,23 @@ const UploadStudentFiles = asyncHandler(async (req, res) => {
   }
 
   try {
-    const filename = new Date().getTime() + "-" + file.originalname;
-    const imageRef = ref(firestore, `students/${id}/` + filename);
-    const snapshot = await uploadBytes(imageRef, file.buffer);
-    const imageURL = await getDownloadURL(snapshot.ref);
+    const filename = crypto.randomBytes(32).toString("hex")
+    const params = {
+      Bucket: system_data.AWS_BUCKETS_NAME,
+      Key: filename,
+      Body: file.buffer,
+      ContentType: file.mimetype,
+    };
+    const command = new PutObjectCommand(params);
+
+    await s3.send(command);
     res.status(200).json({
       message: "document uploaded success",
       success: true,
-      data: { url: imageURL },
+      data: { url: filename },
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(502).json({
       message: "document upload failed",
       success: false,

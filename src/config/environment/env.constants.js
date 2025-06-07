@@ -26,6 +26,11 @@ const system_data = {
   FIREBASE_MESSAGING_SENDER_ID: process.env.FIREBASE_MESSAGING_SENDER_ID,
   FIREBASE_APP_ID: process.env.FIREBASE_APP_ID,
   FIREBASE_MEASUREMENT_ID: process.env.FIREBASE_MEASUREMENT_ID,
+
+  AWS_ACCESS_KEY: process.env.AWS_ACCESS_KEY,
+  AWS_SECRET_KEY: process.env.AWS_SECRET_KEY,
+  AWS_REGION: process.env.AWS_REGION,
+  AWS_BUCKETS_NAME: process.env.AWS_BUCKETS_NAME,
 };
 
 export default system_data;

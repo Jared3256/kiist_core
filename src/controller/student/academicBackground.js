@@ -4,10 +4,24 @@ import studentProfileModel from "../../models/student/student.js";
 const UpdateStudentAcademicBackground = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const {
-    secondarySchool,
-    college,
-    proffessionalQualification,
-    academicInformation,
+    highSchoolName,
+    highSchoolLocation,
+    highSchoolStartDate,
+    highSchoolEndDate,
+    highSchoolQualification,
+    highSchoolGrade,
+    highSchoolTranscript,
+    collegeName,
+    collegeLocation,
+    collegeStartDate,
+    collegeEndDate,
+    collegeDegree,
+    collegeMajor,
+    collegeGrade,
+    collegeTranscript,
+    certifications,
+    certificationDocuments,
+    additionalInfo,
   } = req.body;
 
   if (String(id).length !== 24) {
@@ -18,20 +32,14 @@ const UpdateStudentAcademicBackground = asyncHandler(async (req, res) => {
     });
   }
 
-  if (!secondarySchool) {
-    return res.status(412).json({
-      message: "Crucial academic data is missing",
-      success: false,
-      data: null,
-    });
-  }
-  // Check the authenticity of programming
   if (
-    !secondarySchool.name ||
-    !secondarySchool.startDate ||
-    !secondarySchool.endDate ||
-    !secondarySchool.qualificationObtained ||
-    !secondarySchool.finalGrade
+    !highSchoolName ||
+    !highSchoolLocation ||
+    !highSchoolStartDate ||
+    !highSchoolEndDate ||
+    !highSchoolQualification ||
+    !highSchoolGrade ||
+    !highSchoolTranscript
   ) {
     return res.status(412).json({
       message: "Crucial academic data is missing",
@@ -39,16 +47,36 @@ const UpdateStudentAcademicBackground = asyncHandler(async (req, res) => {
       data: null,
     });
   }
+  // Check the authenticity of programming
 
   const result = await studentProfileModel.findByIdAndUpdate(
     id,
     {
       $set: {
         academicBackground: {
-          secondarySchool,
-          college,
-          proffessionalQualification,
-          academicInformation,
+          secondarySchool: {
+            name: highSchoolName,
+            startDate: highSchoolStartDate,
+            endDate: highSchoolEndDate,
+            qualificationObtained: highSchoolQualification,
+            finalGrade: highSchoolGrade,
+            transcript: highSchoolTranscript,
+          },
+          college: {
+            name: collegeName,
+            location: collegeLocation,
+            startDate: collegeStartDate,
+            endDate: collegeEndDate,
+            qualificationObtained: collegeDegree,
+            major: collegeMajor,
+            transcript: collegeTranscript,
+            finalGrade: collegeGrade,
+          },
+          proffessionalQualification: {
+            certifications,
+            certificationDocuments,
+          },
+          academicInformation: additionalInfo,
         },
       },
     },
