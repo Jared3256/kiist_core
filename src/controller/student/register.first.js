@@ -112,7 +112,7 @@ const RegisterNewStudent = asyncHandler(async (req, res) => {
   return res.status(201).json({
     status: "success",
     message: "Register new student",
-    data: req.body,
+    data: result,
   });
 });
 
