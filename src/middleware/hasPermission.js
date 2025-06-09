@@ -25,11 +25,9 @@ export const roles = {
 };
 
 export const hasPermission = (permissionName) => {
-  
   return function (req, res, next) {
     const authHeader = req.headers.authorization || req.headers.Authorization;
 
-   
     if (!authHeader?.startsWith("Bearer ")) {
       return res
         .status(401)
@@ -38,9 +36,9 @@ export const hasPermission = (permissionName) => {
 
     const token = authHeader.split(" ")[1];
     const decoded = jwt.decode(token);
-    console.log(decoded)
+    console.log(decoded);
     let active_role = decoded.user.roles || "owner";
-console.log(permissionName);
+    console.log(permissionName);
     let accepted = false;
 
     permissionName.forEach((role) => {
