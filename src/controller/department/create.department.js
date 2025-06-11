@@ -3,10 +3,10 @@ import UserModel from "../../models/app/user.model.js";
 import DepartmentModel from "../../models/app/department.model.js";
 
 const createDepartment = asyncHandler(async (req, res) => {
-  const { departmentName, headOfDepartment , departmentCode} = req.body;
+  const { name, head, code } = req.body;
 
   try {
-    if (!departmentName || !headOfDepartment || !departmentCode) {
+    if (!name || !head || !code) {
       return res.status(412).json({
         success: false,
         message: "Provide department name and head of department.",
@@ -15,7 +15,7 @@ const createDepartment = asyncHandler(async (req, res) => {
     }
 
     // Check the length of the headOfDepartment
-    if (String(headOfDepartment).length !== 24) {
+    if (String(head).length !== 24) {
       return res.status(416).json({
         success: true,
         message: "invalid department head id provided.",
@@ -26,9 +26,8 @@ const createDepartment = asyncHandler(async (req, res) => {
     // Check if the department head id matches up any user in the database
     // The user MUST be a tutor as well
     const foundDepartmentHead = await UserModel.findOne({
-      _id: headOfDepartment,
+      _id: head,
       role: { $in: ["tutor", "admin"] },
-      
     });
 
     if (!foundDepartmentHead) {
@@ -41,8 +40,9 @@ const createDepartment = asyncHandler(async (req, res) => {
 
     //   Check if a deparment already exist with the name provided
     const foundDepartment = await DepartmentModel.findOne({
-      name: departmentName,
-      headOfDepartment: headOfDepartment,
+      name: name,
+      headOfDepartment: head,
+      departmentCode:code
     });
 
     if (foundDepartment) {
@@ -54,9 +54,9 @@ const createDepartment = asyncHandler(async (req, res) => {
     }
     //create the department model and send to the database
     const department = await DepartmentModel({
-      departmentName,
-      headOfDepartment,
-      departmentCode
+      departmentName: name,
+      headOfDepartment: head,
+      departmentCode: code,
     }).save();
 
     if (!department) {
@@ -70,10 +70,10 @@ const createDepartment = asyncHandler(async (req, res) => {
     return res.status(200).json({
       message: "department created successfully.",
       data: department,
-      success:true
-    })
+      success: true,
+    });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res.status(500).json({
       success: false,
       message: "unable to create the department",
