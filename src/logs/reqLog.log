@@ -1931,3 +1931,7 @@
 2025-06-09	16:34:22		a773d90f-778d-41cd-90f9-11789fbbab3e		POST		/api/v1/admin/course/create		undefined
 2025-06-09	16:38:20		dbf0c1f3-6af7-4e28-a703-d9198f1f602f		POST		/api/v1/admin/course/create		undefined
 2025-06-09	16:42:39		91e7ab4a-1f81-4733-89aa-d2b5a97a616a		GET		/api/v1/admin/course/list		undefined
+2025-06-11	22:00:17		33ff3283-b4ca-4f9e-aa02-feabae4ebb6b		GET		/api/v1/admin/course/list		undefined
+2025-06-11	22:00:18		592000ed-bc60-4858-bc89-943a6f2c659f		GET		/favicon.ico		undefined
+2025-06-11	22:01:29		5afb1bd0-e739-40f4-bade-45d3003b9333		GET		/api/v1/admin/tutor/list		undefined
+2025-06-11	22:01:39		f1c981d9-ca37-4f98-bba6-0fa18ae897af		GET		/api/v1/admin/tutor/list		undefined

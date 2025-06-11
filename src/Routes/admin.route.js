@@ -3,6 +3,7 @@ import departmentRouter from "./department/department.route.js";
 import { hasPermission } from "../middleware/hasPermission.js";
 import createDepartmentController from "../controller/department/createDepartmentController.js";
 import createCourseController from "../controller/course/createCourseController.js";
+import createTutorController from "../controller/tutor/createTutorController.js";
 
 const adminRouter = express.Router();
 
@@ -24,4 +25,9 @@ adminRouter.get(
 );
 adminRouter.delete("/course/remove", createCourseController.remove);
 adminRouter.post("/course/create", createCourseController.create);
+
+/**
+ * Lectuerer | Tutor routes
+ */
+adminRouter.get("/tutor/list", createTutorController.listTutors);
 export default adminRouter;
