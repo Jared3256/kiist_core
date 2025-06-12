@@ -30,4 +30,5 @@ adminRouter.post("/course/create", createCourseController.create);
  * Lectuerer | Tutor routes
  */
 adminRouter.get("/tutor/list", createTutorController.listTutors);
+adminRouter.post("/tutor/create", createTutorController.create)
 export default adminRouter;
