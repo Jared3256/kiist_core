@@ -18,6 +18,7 @@ adminRouter.post("/:id/upload" , multerUpload.single("file"),createAdminMiddlewa
 /**
  * Department Routes
  */
+adminRouter.get("/:adminId/department/:departmentId/get", createDepartmentController.get)
 adminRouter.post("/department/create", createDepartmentController.create);
 adminRouter.put("/department/update", createDepartmentController.update);
 adminRouter.delete("/department/remove", createDepartmentController.delete);
