@@ -4,8 +4,16 @@ import { hasPermission } from "../middleware/hasPermission.js";
 import createDepartmentController from "../controller/department/createDepartmentController.js";
 import createCourseController from "../controller/course/createCourseController.js";
 import createTutorController from "../controller/tutor/createTutorController.js";
+import {multerUpload} from "../config/firebase/firebase.config.js";
+import createAdminMiddleware from "../controller/admin/createAdminMiddleware.js";
 
 const adminRouter = express.Router();
+
+
+/**
+ * Admin Upload Links
+ */
+adminRouter.post("/:id/upload" , multerUpload.single("file"),createAdminMiddleware.files)
 
 /**
  * Department Routes
@@ -27,7 +35,7 @@ adminRouter.delete("/course/remove", createCourseController.remove);
 adminRouter.post("/course/create", createCourseController.create);
 
 /**
- * Lectuerer | Tutor routes
+ * Lecturer | Tutor routes
  */
 adminRouter.get("/tutor/list", createTutorController.listTutors);
 adminRouter.post("/tutor/create", createTutorController.create)

@@ -3,9 +3,9 @@ import DepartmentModel from "../../models/app/department.model.js";
 import TutorModel from "../../models/tutor/Tutor.model.js";
 
 const CreateTutor = asyncHandler(async(req, res)=>{
-    const {photo,name, department, qualification, payment, status} = req.body;
+    const {photo,name, department, qualification, paymentScale, status} = req.body;
 
-    if(!photo || !name || !department || !qualification || !payment||!status) {
+    if(!photo || !name || !department || !qualification || !paymentScale||!status) {
         return res.status(417).json({
             message:"Required Data is missing",
             success:false,
@@ -34,7 +34,7 @@ const CreateTutor = asyncHandler(async(req, res)=>{
         }
 
         const result =  await TutorModel({
-            photo,name, department, qualification, payment, status
+            photo,name, department, qualification, paymentScale, status
         }).save()
 
         if(!result){
