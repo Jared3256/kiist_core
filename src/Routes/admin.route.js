@@ -38,6 +38,7 @@ adminRouter.post("/course/create", createCourseController.create);
 /**
  * Lecturer | Tutor routes
  */
+adminRouter.put("/tutor/:id/assign-class", createTutorController.assignClasses)
 adminRouter.delete("/tutor/:id/remove", createTutorController.remove);
 adminRouter.get("/tutor/list", createTutorController.listTutors);
 adminRouter.post("/tutor/create", createTutorController.create)
