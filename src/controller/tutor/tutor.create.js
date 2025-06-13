@@ -5,6 +5,8 @@ import TutorModel from "../../models/tutor/Tutor.model.js";
 const CreateTutor = asyncHandler(async(req, res)=>{
     const {photo,name, department, qualification, paymentScale, status} = req.body;
 
+    console.log(req.body)
+
     if(!photo || !name || !department || !qualification || !paymentScale||!status) {
         return res.status(417).json({
             message:"Required Data is missing",

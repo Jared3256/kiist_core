@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import UserModel from "../../models/app/user.model.js";
 import DepartmentModel from "../../models/app/department.model.js";
+import TutorModel from "../../models/tutor/Tutor.model.js";
 
 const createDepartment = asyncHandler(async (req, res) => {
   const { name, head, code } = req.body;
@@ -25,9 +26,9 @@ const createDepartment = asyncHandler(async (req, res) => {
 
     // Check if the department head id matches up any user in the database
     // The user MUST be a tutor as well
-    const foundDepartmentHead = await UserModel.findOne({
+    const foundDepartmentHead = await TutorModel.findOne({
       _id: head,
-      role: { $in: ["tutor", "admin"] },
+      // role: { $in: ["tutor", "admin"] },
     });
 
     if (!foundDepartmentHead) {

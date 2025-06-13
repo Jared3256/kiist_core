@@ -23,8 +23,8 @@ const LecturerSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    payment:{
-        type:Number,
+    paymentScale:{
+        type:String,
 
     },
     status:{
@@ -32,6 +32,18 @@ const LecturerSchema = new mongoose.Schema({
         default:'inactive',
         required:true,
         enum:["active","inactive"],
+    },
+    courses:{
+        units:[{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"course",
+            trim:true,
+        }],
+        shedule:[
+            {
+                type:String,
+            }
+        ]
     }
 },{
     timestamps:true

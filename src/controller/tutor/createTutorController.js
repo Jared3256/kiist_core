@@ -1,11 +1,13 @@
 import ListAllTutors from "./tutor.list.js";
 import CreateTutor from "./tutor.create.js";
+import DeleteTutor from "./tutor.delete.js";
 
 
 const createTutorController = ()=>{
     const methods = {}
     methods.listTutors = (req, res) => ListAllTutors(req, res)
     methods.create = (req, res)=> CreateTutor(req, res)
+    methods.remove = (req, res)=> DeleteTutor(req, res)
     return methods
 }
 

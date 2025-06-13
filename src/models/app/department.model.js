@@ -21,7 +21,6 @@ const departmentSchema = new mongoose.Schema(
     },
     headOfDepartment: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
       ref: "user",
     },
   },
