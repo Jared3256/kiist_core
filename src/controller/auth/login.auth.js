@@ -19,7 +19,7 @@ const LoginUser = asyncHandler(async (req, res) => {
             enabled: true,
         });
     } else {
-        console.log(email, password)
+
         foundUser = await UserModel.findOne({
             regNumber: email,
             removed: false,
@@ -53,7 +53,6 @@ const LoginUser = asyncHandler(async (req, res) => {
         })
     }
 
-    console.log("Database Password", databasePassword)
     if (!databasePassword.salt) {
         return res.status(403).json({
             success: false,
@@ -67,11 +66,6 @@ const LoginUser = asyncHandler(async (req, res) => {
         databasePassword.password
     );
 
-    console.log(
-        databasePassword,
-        databasePassword.salt + password,
-        databasePassword.password
-    );
     if (!isMatch)
         return res.status(403).json({
             success: false,

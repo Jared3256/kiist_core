@@ -38,9 +38,9 @@ const serverApp = http.createServer(app);
 const io = new SocketIo(serverApp, {cors: {origin: '*'}});
 
 io.on('connection', (socket) => {
-    console.log(`Socket ${socket.id} connected`);
+
     socket.on('join-wait', (UserId) => {
-        console.log("USer Id", UserId,)
+
         socket.join(UserId);
     });
 });

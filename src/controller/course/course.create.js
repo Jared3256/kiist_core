@@ -39,7 +39,7 @@ const CreateCourse = asyncHandler(async (req, res) => {
             });
         }
         const foundLecturer = await LecturerModel.findOne({
-           
+
             _id: lecturer,
         });
         if (!foundLecturer) {
@@ -87,7 +87,6 @@ const CreateCourse = asyncHandler(async (req, res) => {
             data: result,
         });
     } catch (error) {
-        console.log(error);
         return res.status(500).json({
             message: "server experienced an error",
             data: null,

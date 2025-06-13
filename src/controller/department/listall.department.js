@@ -30,9 +30,6 @@ const ListAllDepartment = asyncHandler(async (req, res) => {
         })
     )
 
-    console.log(modifiedDepartments)
-
-
     return res.status(200).json({
         message: "found all departments",
         success: true,

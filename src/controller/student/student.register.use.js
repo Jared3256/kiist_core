@@ -64,10 +64,10 @@ const RegisterStudentAsUser = asyncHandler(async (email, regNumber, password, ge
         emailTokenExpiresAt: addHours(Date.now(), 1),
     };
 
-    console.log(UserPasswordData);
+
     const resultPassword = await new UserPassword(UserPasswordData).save();
 
-    console.log("saved password", resultPassword);
+
     if (!resultPassword) {
         await userModel.deleteOne({_id: result._id}).exec();
 

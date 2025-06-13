@@ -5,7 +5,7 @@ const getNextSequence = asyncHandler(async (level, res) => {
     const year = new Date().getFullYear();
 
     const key = `${level}-${year}`;
-    console.log(key)
+
 
     const updatedSequence = await studentCounterModel.findOneAndUpdate(
         {_id: key},

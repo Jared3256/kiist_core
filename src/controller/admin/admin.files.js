@@ -1,11 +1,11 @@
 import asyncHandler from "express-async-handler";
-import {  PutObjectCommand } from "@aws-sdk/client-s3";
+import {PutObjectCommand} from "@aws-sdk/client-s3";
 import system_data from "../../config/environment/env.constants.js";
 import crypto from "crypto"
 import {s3} from "../../config/aws/aws.config.js"
 
 const UploadAdminFiles = asyncHandler(async (req, res) => {
-    const { id } = req.params;
+    const {id} = req.params;
     const file = req.file;
 
     if (String(id).length !== 24) {
@@ -30,10 +30,10 @@ const UploadAdminFiles = asyncHandler(async (req, res) => {
         res.status(200).json({
             message: "document uploaded success",
             success: true,
-            data: { url: filename },
+            data: {url: filename},
         });
     } catch (error) {
-        console.log(error);
+
         res.status(502).json({
             message: "document upload failed",
             success: false,

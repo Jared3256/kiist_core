@@ -17,7 +17,7 @@ const ListAllCourse = asyncHandler(async (req, res) => {
 
     const modifiedCourses = await Promise.all(
         listCourse.map(async (course) => {
-            console.log("LLLLLLLL", await LecturerModel.findById(course.lecturer))
+
 
             return {
                 ...course.toObject(),
@@ -26,7 +26,7 @@ const ListAllCourse = asyncHandler(async (req, res) => {
             };
         })
     )
-    console.log("New courses", modifiedCourses)
+
     return res.status(200).json({
         message: "courses found",
         succes: true,

@@ -1,9 +1,9 @@
-const ReturnHandler =(message, success, data,code, res)=>{
-    console.log(res, message, code, data)
+const ReturnHandler = (message, success, data, code, res) => {
+
     return res.status(code).json({
-        success:success,
-        code:code,
-        data:data
+        success: success,
+        code: code,
+        data: data
     })
 }
 export default ReturnHandler
