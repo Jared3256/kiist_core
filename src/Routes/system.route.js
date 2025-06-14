@@ -4,6 +4,7 @@ import authRouter from "./auth/auth.route.js";
 import paymentRouter from "./payment/payment.route.js";
 import studentRouter from "./students/student.route.js";
 import adminRouter from "./admin.route.js";
+import unitRegistrationRouter from "./unit_registration/unit.registration.route.js";
 
 const systemRouter = express.Router();
 
@@ -28,5 +29,10 @@ systemRouter.use("/payment", paymentRouter);
 // configure  router === Admin
 
 systemRouter.use("/admin", adminRouter);
+
+/**
+ * Configure the Unit Registration Routes
+ */
+systemRouter.use("/unit", unitRegistrationRouter)
 
 export default systemRouter;
