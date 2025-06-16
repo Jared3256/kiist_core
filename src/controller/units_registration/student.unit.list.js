@@ -17,6 +17,7 @@ const ListStudentRegisteredUnits = asyncHandler(async (req, res) => {
             student: id, status: {$in: ['pending', 'approved', "rejected"]}
         }).populate("unit.department").populate("unit");
 
+        
         if (foundUnits.length < 1) {
             return res.status(404).json({
                 message: "No Registration Found",
