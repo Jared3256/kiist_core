@@ -14,7 +14,7 @@ const ListStudentRegisteredUnits = asyncHandler(async (req, res) => {
         }
 
         const foundUnits = await UnitRegistrationModel.find({
-            student: id, status: {$in: ['pending', 'approved']}
+            student: id, status: {$in: ['pending', 'approved', "rejected"]}
         }).populate("unit.department").populate("unit");
 
         if (foundUnits.length < 1) {
