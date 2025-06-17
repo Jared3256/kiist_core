@@ -35,6 +35,13 @@ const CourseSchema = new mongoose.Schema(
                 types: mongoose.Schema.Types.ObjectId,
             },
         ],
+        status: {
+            type: String,
+            required: true,
+            default: "available",
+            trim: true,
+            enum: ["available", "closed"]
+        }
     },
     {
         timestamps: true,
