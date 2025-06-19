@@ -20,7 +20,7 @@ const handlerDarajaCallback = asyncHandler(async (req, res) => {
     const callbackMetadata = data?.Body?.stkCallback?.CallbackMetadata;
 
     const receiptId =
-        resultCode === 2001
+        resultCode !== 0
             ? merchantRequestId
             : callbackMetadata?.Item?.find(item => item.Name === "MpesaReceiptNumber")?.Value;
 
@@ -29,14 +29,13 @@ const handlerDarajaCallback = asyncHandler(async (req, res) => {
     const foundHistory = await StudentPaymentHistoryModel.findOne({
         receiptId: merchantRequestId
     },)
+    foundHistory.status = status;
+
+    foundHistory.receiptId = receiptId;
+
+    await foundHistory.save()
 
     if (foundHistory && resultCode === 0) {
-        foundHistory.status = status;
-
-        foundHistory.receiptId = receiptId;
-
-        await foundHistory.save()
-
         const foundStudentPayment = await StudentFinanceModel.findOne({
             student: foundHistory.student
         })
