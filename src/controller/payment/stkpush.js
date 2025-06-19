@@ -32,7 +32,7 @@ const daraja_stkpush = asyncHandler(async (req, res) => {
 
 
         const token = await daraja_authorization(req, res);
-        
+
         const server_response = await axios.post(
             system_data.STKPUSH_URI,
             {
@@ -44,7 +44,7 @@ const daraja_stkpush = asyncHandler(async (req, res) => {
                 "PartyA": phone,
                 "PartyB": 174379,
                 "PhoneNumber": phone,
-                "CallBackURL": "https://e86d-197-248-195-87.ngrok-free.app/api/v1/payment/daraja_callback",
+                "CallBackURL": system_data.DEV_CALLBACK_URI,
                 "AccountReference": "CompanyXLTD",
                 "TransactionDesc": "Payment of X"
             },
