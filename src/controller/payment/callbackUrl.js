@@ -37,6 +37,7 @@ const handlerDarajaCallback = asyncHandler(async (req, res) => {
         foundStudentPayment.amount_paid += foundHistory.amount;
     }
 
+    await foundStudentPayment.save()
     console.log("Student.", foundStudentPayment, foundHistory)
 
     res.status(200)
