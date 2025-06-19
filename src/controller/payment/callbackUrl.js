@@ -2,10 +2,11 @@ import asyncHandler from "express-async-handler";
 import StudentPaymentHistoryModel from "../../models/student/student.payment.history.js";
 
 const handlerDarajaCallback = asyncHandler(async (req, res) => {
-  
+
     console.log(JSON.stringify(req.body, null, 2))
     const data = JSON.stringify(req.body, null, 2)
-    const resultCode = data.Body.stkCallback.ResultCode;
+    console.log("data", data)
+    const resultCode = data.Body?.stkCallback?.ResultCode;
     let status
     if (resultCode === 2001) {
         status = "cancelled";
