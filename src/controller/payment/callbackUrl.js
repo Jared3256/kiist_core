@@ -9,6 +9,9 @@ const handlerDarajaCallback = asyncHandler(async (req, res) => {
     const data = req.body;
     const resultCode = data?.Body?.stkCallback?.ResultCode;
 
+    console.log(resultCode)
+
+
     let status = resultCode !== 0 ? "cancelled" : "completed";
 
     const merchantRequestId = data?.Body?.stkCallback?.MerchantRequestID;
@@ -26,7 +29,7 @@ const handlerDarajaCallback = asyncHandler(async (req, res) => {
 
     if (foundHistory && resultCode === 0) {
         foundHistory.status = status;
-        
+
         foundHistory.receiptId = receiptId;
 
         await foundHistory.save()
@@ -41,8 +44,6 @@ const handlerDarajaCallback = asyncHandler(async (req, res) => {
         }
         console.log("Student.", foundStudentPayment, foundHistory)
     }
-
-
     res.status(200)
 });
 
