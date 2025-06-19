@@ -11,7 +11,7 @@ const C2B_Register_url = asyncHandler(async (req, res) => {
         "ConfirmationURL": system_data.DEV_CALLBACK_URI,
         "ValidationURL": system_data.VALIDATION_URL,
     }, {
-        headers: {
+        headers:
             "Authorization": `Bearer ${token}`,
         }
     })

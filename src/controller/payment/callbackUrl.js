@@ -1,8 +1,29 @@
 import asyncHandler from "express-async-handler";
+import StudentPaymentHistoryModel from "../../models/student/student.payment.history.js";
 
 const handlerDarajaCallback = asyncHandler(async (req, res) => {
     console.log(req.body)
     console.log(JSON.stringify(req.body, null, 2))
+
+    const resultCode = data.Body.stkCallback.ResultCode;
+    let status
+    if (resultCode === 2001) {
+        status = "cancelled";
+    } else {
+        status = "success";
+    }
+    const receiptId =
+        resultCode === 2001
+            ? callback.MerchantRequestID
+            : callback.CallbackMetadata?.item?.[1]?.value;
+
+    const foundHistory = await StudentPaymentHistoryModel.findOneAndUpdate({
+        receiptId: data.Body.stkCallback.MerchantRequestID
+    }, {
+        $set: {status: status, receiptId: receiptId}
+    }, {new: true, runValidators: true})
+
+    console.log(foundHistory)
 
     res.status(200).json({})
 });
