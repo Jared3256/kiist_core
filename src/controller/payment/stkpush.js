@@ -4,6 +4,7 @@ import daraja_authorization from "./authorization.js";
 import system_data from "../../config/environment/env.constants.js";
 import StudentPaymentHistoryModel from "../../models/student/student.payment.history.js";
 import studentProfileModel from "../../models/student/student.js";
+import C2B_Register_url from "./register.completion.url.js";
 
 const daraja_stkpush = asyncHandler(async (req, res) => {
 
@@ -30,7 +31,7 @@ const daraja_stkpush = asyncHandler(async (req, res) => {
             })
         }
 
-
+        await C2B_Register_url(req, res)
         const token = await daraja_authorization(req, res);
 
         const server_response = await axios.post(
@@ -44,7 +45,7 @@ const daraja_stkpush = asyncHandler(async (req, res) => {
                 "PartyA": phone,
                 "PartyB": 174379,
                 "PhoneNumber": phone,
-                "CallBackURL": "https://kiist-core-production.up.railway.app/api/v1/payment/daraja_callback",
+                "CallBackURL": system_data.DEV_CALLBACK_URI,
                 "AccountReference": "Shan Software Systems",
                 "TransactionDesc": "School Fee"
             },

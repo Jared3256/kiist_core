@@ -11,6 +11,7 @@ const system_data = {
     NODE_ENV: environment,
     BEARER: process.env.Bearer,
     AUTHORIZATION_URI: process.env.AUTHORIZATION_URI,
+    C2B_REGISTER_URL: process.env.C2B_REGISTER_URL,
     STKPUSH_URI: process.env.STKPUSH_URI,
     PASSWORD: process.env.PASSWORD,
     DEV_CALLBACK_URI: `${
