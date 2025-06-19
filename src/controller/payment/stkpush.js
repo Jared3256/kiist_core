@@ -44,9 +44,9 @@ const daraja_stkpush = asyncHandler(async (req, res) => {
                 "PartyA": phone,
                 "PartyB": 174379,
                 "PhoneNumber": phone,
-                "CallBackURL": system_data.DEV_CALLBACK_URI,
-                "AccountReference": "CompanyXLTD",
-                "TransactionDesc": "Payment of X"
+                "CallBackURL": "https://kiist-core-production.up.railway.app/api/v1/payment/daraja_callback",
+                "AccountReference": "Shan Software Systems",
+                "TransactionDesc": "School Fee"
             },
             {
                 headers: {
