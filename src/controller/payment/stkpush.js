@@ -31,7 +31,7 @@ const daraja_stkpush = asyncHandler(async (req, res) => {
             })
         }
 
-        await C2B_Register_url(req, res)
+
         const token = await daraja_authorization(req, res);
 
         const server_response = await axios.post(
