@@ -16,7 +16,7 @@ const system_data = {
     DEV_CALLBACK_URI: `${
         environment === "development"
             ? process.env.DEV_CALLBACK_URI
-            : "https://kiist-core-production.up.railway.app/api/v1/payment/daraja_callback"
+            : process.env.PROD_CALLBACK_URI
     }`,
     SHORT_CODE: process.env.SHORT_CODE,
     FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
