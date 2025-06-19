@@ -15,8 +15,8 @@ const handlerDarajaCallback = asyncHandler(async (req, res) => {
     }
     const receiptId =
         resultCode === 2001
-            ? callback.MerchantRequestID
-            : callback.CallbackMetadata?.item?.[1]?.value;
+            ? data.Body?.stkCallback?.MerchantRequestID
+            : data.Body?.stkCallback?.CallbackMetadata?.item?.[1]?.value;
 
     const foundHistory = await StudentPaymentHistoryModel.findOneAndUpdate({
         receiptId: data.Body.stkCallback.MerchantRequestID
