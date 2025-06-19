@@ -6,7 +6,7 @@ import daraja_authorization from "./authorization.js";
 const C2B_Register_url = asyncHandler(async (req, res) => {
     const token = await daraja_authorization(req, res);
     const server_response = await axios.post(system_data.C2B_REGISTER_URL, {
-        "ShortCode": 174379,
+        "ShortCode": 601426,
         "ResponseType": "Completed",
         "ConfirmationURL": system_data.DEV_CALLBACK_URI,
         "ValidationURL": system_data.VALIDATION_URL,
