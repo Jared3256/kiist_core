@@ -19,7 +19,7 @@ const handlerDarajaCallback = asyncHandler(async (req, res) => {
             : data.Body?.stkCallback?.CallbackMetadata?.item?.[1]?.value;
 
     const foundHistory = await StudentPaymentHistoryModel.findOneAndUpdate({
-        receiptId: data.Body.stkCallback.MerchantRequestID
+        receiptId: data?.Body?.stkCallback?.MerchantRequestID
     }, {
         $set: {status: status, receiptId: receiptId}
     }, {new: true, runValidators: true})
