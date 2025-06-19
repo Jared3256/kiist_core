@@ -32,8 +32,7 @@ const daraja_stkpush = asyncHandler(async (req, res) => {
 
 
         const token = await daraja_authorization(req, res);
-        console.log("Token ", token)
-
+        
         const server_response = await axios.post(
             system_data.STKPUSH_URI,
             {
