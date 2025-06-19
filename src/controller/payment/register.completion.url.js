@@ -9,6 +9,7 @@ const C2B_Register_url = asyncHandler(async (req, res) => {
         "ShortCode": 174379,
         "ResponseType": "Completed",
         "ConfirmationURL": system_data.DEV_CALLBACK_URI,
+        "ValidationURL": system_data.VALIDATION_URL,
     }, {
         headers: {
             "Authorization": `Bearer ${token}`,

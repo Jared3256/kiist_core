@@ -14,6 +14,7 @@ const system_data = {
     C2B_REGISTER_URL: process.env.C2B_REGISTER_URL,
     STKPUSH_URI: process.env.STKPUSH_URI,
     PASSWORD: process.env.PASSWORD,
+    VALIDATION_URL: process.env.VALIDATION_URL,
     DEV_CALLBACK_URI: `${
         environment === "development"
             ? process.env.DEV_CALLBACK_URI
