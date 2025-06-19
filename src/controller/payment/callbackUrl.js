@@ -4,41 +4,44 @@ import StudentFinanceModel from "../../models/student/student.finance.js";
 
 const handlerDarajaCallback = asyncHandler(async (req, res) => {
 
-    console.log(JSON.stringify(req.body, null, 2))
-    const data = JSON.stringify(req.body, null, 2)
-    console.log("data", data)
-    const resultCode = data.Body?.stkCallback?.ResultCode;
-    let status
-    if (resultCode !== 0) {
-        status = "cancelled";
-    } else {
-        status = "completed";
-    }
+    console.log("Raw Body:", JSON.stringify(req.body, null, 2));
+
+    const data = req.body;
+    const resultCode = data?.Body?.stkCallback?.ResultCode;
+
+    let status = resultCode !== 0 ? "cancelled" : "completed";
+
+    const merchantRequestId = data?.Body?.stkCallback?.MerchantRequestID;
+    const callbackMetadata = data?.Body?.stkCallback?.CallbackMetadata;
+
     const receiptId =
         resultCode === 2001
-            ? data.Body?.stkCallback?.MerchantRequestID
-            : data.Body?.stkCallback?.CallbackMetadata?.item?.[1]?.value;
+            ? merchantRequestId
+            : callbackMetadata?.Item?.find(item => item.Name === "MpesaReceiptNumber")?.Value;
+
 
     const foundHistory = await StudentPaymentHistoryModel.findOne({
-        receiptId: data?.Body?.stkCallback?.MerchantRequestID
+        receiptId: merchantRequestId
     },)
 
     if (foundHistory && resultCode === 0) {
         foundHistory.status = status;
+        
         foundHistory.receiptId = receiptId;
+
+        await foundHistory.save()
+
+        const foundStudentPayment = await StudentFinanceModel.findOne({
+            student: foundHistory.student
+        })
+
+        if (foundStudentPayment) {
+            foundStudentPayment.amount_paid += foundHistory.amount;
+            await foundStudentPayment.save()
+        }
+        console.log("Student.", foundStudentPayment, foundHistory)
     }
-    await foundHistory.save()
 
-    const foundStudentPayment = await StudentFinanceModel.findOne({
-        student: foundHistory.student
-    })
-
-    if (foundStudentPayment) {
-        foundStudentPayment.amount_paid += foundHistory.amount;
-    }
-
-    await foundStudentPayment.save()
-    console.log("Student.", foundStudentPayment, foundHistory)
 
     res.status(200)
 });
