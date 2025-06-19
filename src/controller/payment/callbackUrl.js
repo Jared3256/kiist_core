@@ -13,6 +13,8 @@ const handlerDarajaCallback = asyncHandler(async (req, res) => {
 
 
     let status = resultCode !== 0 ? "cancelled" : "completed";
+    console.log(status)
+
 
     const merchantRequestId = data?.Body?.stkCallback?.MerchantRequestID;
     const callbackMetadata = data?.Body?.stkCallback?.CallbackMetadata;
@@ -22,6 +24,7 @@ const handlerDarajaCallback = asyncHandler(async (req, res) => {
             ? merchantRequestId
             : callbackMetadata?.Item?.find(item => item.Name === "MpesaReceiptNumber")?.Value;
 
+    console.log(receiptId)
 
     const foundHistory = await StudentPaymentHistoryModel.findOne({
         receiptId: merchantRequestId
