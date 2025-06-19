@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
 import StudentPaymentHistoryModel from "../../models/student/student.payment.history.js";
+import StudentFinanceModel from "../../models/student/student.finance.js";
 
 const handlerDarajaCallback = asyncHandler(async (req, res) => {
 
@@ -18,15 +19,27 @@ const handlerDarajaCallback = asyncHandler(async (req, res) => {
             ? data.Body?.stkCallback?.MerchantRequestID
             : data.Body?.stkCallback?.CallbackMetadata?.item?.[1]?.value;
 
-    const foundHistory = await StudentPaymentHistoryModel.findOneAndUpdate({
+    const foundHistory = await StudentPaymentHistoryModel.findOne({
         receiptId: data?.Body?.stkCallback?.MerchantRequestID
-    }, {
-        $set: {status: status, receiptId: receiptId}
-    }, {new: true, runValidators: true})
+    },)
 
-    console.log(foundHistory)
+    if (foundHistory && resultCode === 0) {
+        foundHistory.status = status;
+        foundHistory.receiptId = receiptId;
+    }
+    await foundHistory.save()
 
-    res.status(200).json({})
+    const foundStudentPayment = await StudentFinanceModel.findOne({
+        student: foundHistory.student
+    })
+
+    if (foundStudentPayment) {
+        foundStudentPayment.amount_paid += foundHistory.amount;
+    }
+
+    console.log("Student.", foundStudentPayment, foundHistory)
+
+    res.status(200)
 });
 
 export default handlerDarajaCallback;
