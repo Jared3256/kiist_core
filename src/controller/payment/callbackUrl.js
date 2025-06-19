@@ -8,10 +8,10 @@ const handlerDarajaCallback = asyncHandler(async (req, res) => {
     console.log("data", data)
     const resultCode = data.Body?.stkCallback?.ResultCode;
     let status
-    if (resultCode === 2001) {
+    if (resultCode !== 0) {
         status = "cancelled";
     } else {
-        status = "success";
+        status = "completed";
     }
     const receiptId =
         resultCode === 2001
