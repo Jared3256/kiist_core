@@ -34,6 +34,6 @@ jobs:
           nvm use 22.12.0
           cd ~/servers/kiist_core
           git pull origin master
-          npm i
+          npm ci
   
           EOF
