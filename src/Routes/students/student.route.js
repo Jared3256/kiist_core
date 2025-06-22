@@ -3,6 +3,7 @@ import createStudentmiddleware from "../../controller/student/createStudentmiddl
 import {multerUpload} from "../../config/firebase/firebase.config.js";
 import createCourseController from "../../controller/course/createCourseController.js";
 import createDepartmentController from "../../controller/department/createDepartmentController.js";
+import createReportingSessionController from "../../controller/student/session/createReportingSessionController.js";
 
 const studentRouter = express.Router();
 
@@ -41,4 +42,11 @@ studentRouter.get("/department/list", createDepartmentController.list)
  */
 studentRouter.get("/:id/finance/get-info", createStudentmiddleware.finance_get_information)
 studentRouter.get("/:id/finance/payment/list", createStudentmiddleware.finance_get_payment_history)
+
+/**
+ * Session Reporting
+ */
+studentRouter.post("/:id/session/reporting", createReportingSessionController.report_session)
+studentRouter.get("/:id/session/get", createReportingSessionController.session_get)
+
 export default studentRouter;

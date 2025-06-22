@@ -28,9 +28,9 @@ const StudentFinanceGetInformation = asyncHandler(async (req, res) => {
         const studentLevel = String(foundStudent.programSelection.level)
         let total = 0
         if (studentLevel === "DIP") {
-            total = 20000
+            total = 0
         } else {
-            total = 18000
+            total = 0
         }
 
         console.log(studentLevel, total)
@@ -41,6 +41,8 @@ const StudentFinanceGetInformation = asyncHandler(async (req, res) => {
 
         //If the information is not available then create a new instance since the student is existing in the database
         if (!studentFinanceInfo) {
+            console.log("Not found")
+
             const save_result = await new StudentFinanceModel({
                 student: id, total_fee: total
             }).save()

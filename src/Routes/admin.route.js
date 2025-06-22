@@ -6,6 +6,7 @@ import createCourseController from "../controller/course/createCourseController.
 import createTutorController from "../controller/tutor/createTutorController.js";
 import {multerUpload} from "../config/firebase/firebase.config.js";
 import createAdminMiddleware from "../controller/admin/createAdminMiddleware.js";
+import createSessionMiddlewareController from "../controller/session/createSessionMiddlewareController.js";
 
 const adminRouter = express.Router();
 
@@ -49,4 +50,12 @@ adminRouter.post("/tutor/create", createTutorController.create)
 adminRouter.get("/student/list", createAdminMiddleware.student_list)
 adminRouter.delete("/student/:id/remove", createAdminMiddleware.student_remove)
 
+
+/**
+ * Session management Routes for the admin Only
+ */
+adminRouter.get("/session/get", createSessionMiddlewareController.get_semester)
+adminRouter.post("/session/create", createSessionMiddlewareController.create_session)
+adminRouter.put("/session/:id/toggle", createSessionMiddlewareController.toggle_session)
+adminRouter.put("/session/:id/update-deadline", createSessionMiddlewareController.deadline_update)
 export default adminRouter;
