@@ -32,7 +32,6 @@ const refreshToken = asyncHandler(async (req, res) => {
                 email: decoded.UserInfo.email,
             }).exec();
 
-            console.log(foundUser)
 
             if (!foundUser) {
                 return res.status(401).json({message: "Unauthorized - no user found"});

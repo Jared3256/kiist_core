@@ -9,7 +9,6 @@ const daraja_authorization = asyncHandler(async (req, res) => {
         },
     });
 
-    console.log(server_response.data.access_token)
 
     return server_response.data.access_token;
 });

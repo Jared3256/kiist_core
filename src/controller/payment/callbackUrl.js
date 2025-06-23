@@ -4,16 +4,11 @@ import StudentFinanceModel from "../../models/student/student.finance.js";
 
 const handlerDarajaCallback = asyncHandler(async (req, res) => {
 
-    console.log("Raw Body:", JSON.stringify(req.body, null, 2));
-
     const data = req.body;
     const resultCode = data?.Body?.stkCallback?.ResultCode;
 
-    console.log(resultCode)
-
 
     let status = resultCode !== 0 ? "cancelled" : "completed";
-    console.log(status)
 
 
     const merchantRequestId = data?.Body?.stkCallback?.MerchantRequestID;
@@ -24,7 +19,7 @@ const handlerDarajaCallback = asyncHandler(async (req, res) => {
             ? merchantRequestId
             : callbackMetadata?.Item?.find(item => item.Name === "MpesaReceiptNumber")?.Value;
 
-    console.log(receiptId)
+    c
 
     const foundHistory = await StudentPaymentHistoryModel.findOne({
         receiptId: merchantRequestId
@@ -44,7 +39,7 @@ const handlerDarajaCallback = asyncHandler(async (req, res) => {
             foundStudentPayment.amount_paid += foundHistory.amount;
             await foundStudentPayment.save()
         }
-        console.log("Student.", foundStudentPayment, foundHistory)
+
     }
     res.status(200)
 });

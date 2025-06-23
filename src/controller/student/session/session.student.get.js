@@ -6,7 +6,6 @@ const SessionStudentGet = asyncHandler(async (req, res) => {
     const {id} = req.params;
     const {session} = req.query;
 
-    console.log(session, id)
 
     try {
 
@@ -20,7 +19,7 @@ const SessionStudentGet = asyncHandler(async (req, res) => {
             student: id,
 
         }).populate("currentSemester")
-        console.log(foundSession)
+
         const foundData = foundSession.filter((sess) => sess.currentSemester.currentSemester === session)[0]
 
 
@@ -36,7 +35,7 @@ const SessionStudentGet = asyncHandler(async (req, res) => {
             data: foundData, success: true
         })
     } catch (e) {
-        console.log(e)
+
 
         return res.status(400).json({})
     }

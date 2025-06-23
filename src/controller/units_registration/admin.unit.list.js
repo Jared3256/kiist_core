@@ -33,7 +33,6 @@ const AdminUnitList = asyncHandler(async (req, res) => {
             })
         )
 
-        console.log(modifiedRegistrations)
 
         return res.status(200).json({
             message: "Request success",

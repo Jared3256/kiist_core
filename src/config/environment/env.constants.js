@@ -35,6 +35,5 @@ const system_data = {
     AWS_BUCKETS_NAME: process.env.AWS_BUCKETS_NAME,
 };
 
-console.log(system_data)
 
 export default system_data;

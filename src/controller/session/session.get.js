@@ -4,7 +4,6 @@ import SessionModel from "../../models/session/sesion.js";
 const GetCurrentSession = asyncHandler(async (req, res) => {
     const {session} = req.query
 
-    console.log(session)
 
     try {
         if (!session) {

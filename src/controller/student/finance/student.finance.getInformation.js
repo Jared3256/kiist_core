@@ -33,7 +33,6 @@ const StudentFinanceGetInformation = asyncHandler(async (req, res) => {
             total = 0
         }
 
-        console.log(studentLevel, total)
 
         const studentFinanceInfo = await StudentFinanceModel.findOne({
             student: id,
@@ -41,7 +40,7 @@ const StudentFinanceGetInformation = asyncHandler(async (req, res) => {
 
         //If the information is not available then create a new instance since the student is existing in the database
         if (!studentFinanceInfo) {
-            console.log("Not found")
+
 
             const save_result = await new StudentFinanceModel({
                 student: id, total_fee: total
@@ -61,7 +60,7 @@ const StudentFinanceGetInformation = asyncHandler(async (req, res) => {
             success: true,
         })
     } catch (e) {
-        console.log(e)
+
 
         return res.status(422).json({
             message: "Unable to find student finance information. Contact finance office.",

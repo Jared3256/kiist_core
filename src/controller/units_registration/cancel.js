@@ -46,7 +46,7 @@ const CancelUnitRegistration = asyncHandler(async (req, res) => {
             data: result, success: true
         })
     } catch (e) {
-        console.log(e)
+
 
         return res.status(422).json({
             success: false,

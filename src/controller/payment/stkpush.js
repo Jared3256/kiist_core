@@ -11,7 +11,6 @@ const daraja_stkpush = asyncHandler(async (req, res) => {
     const {amount, phone, id} = req.body;
 
     try {
-        console.log(req.body)
 
 
         if (!id || !amount || !phone || String(id).length !== 24) {
@@ -57,8 +56,6 @@ const daraja_stkpush = asyncHandler(async (req, res) => {
         );
 
 
-        console.log(server_response.data)
-
         const result = await new StudentPaymentHistoryModel({
             student: id,
             receiptId: server_response.data.MerchantRequestID,
@@ -76,7 +73,7 @@ const daraja_stkpush = asyncHandler(async (req, res) => {
             data: "check your mpesa for confirmation of the payment",
         });
     } catch (e) {
-        console.log(e)
+
 
         return res.status(422).json({
             message: "Unable to initiate payment",

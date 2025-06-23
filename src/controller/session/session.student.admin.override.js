@@ -1,16 +1,30 @@
 import asyncHandler from "express-async-handler";
-import StudentSessionReportingModel from "../../../models/student/student.session.reporting.js";
-import studentProfileModel from "../../../models/student/student.js";
-import StudentFinanceModel from "../../../models/student/student.finance.js";
+import StudentSessionReportingModel from "../../models/student/student.session.reporting.js";
+import studentProfileModel from "../../models/student/student.js";
+import StudentFinanceModel from "../../models/student/student.finance.js";
+import SessionOverrideModel from "../../models/session/session.override.js";
+import SessionModel from "../../models/session/sesion.js";
 
-const SessionStudentReport = asyncHandler(async (req, res) => {
+const SessionStudentReportOverride = asyncHandler(async (req, res) => {
     const {id} = req.params;
-    const {currentSemester} = req.body;
+    const {currentSemester, regNumber, name, reason} = req.body;
+
+    if (!id || !currentSemester || String(id).length !== 24 || !regNumber || !name || !reason) {
+        return res.status(411).json({
+            message: "Invalid request data",
+            success: false,
+        })
+    }
 
     try {
-        if (!id || !currentSemester || String(id).length !== 24 || String(currentSemester).length !== 24) {
-            return res.status(411).json({
-                message: "Invalid request data",
+        const findSession = await SessionModel.findOne({
+            currentSemester: currentSemester
+        })
+
+
+        if (!findSession) {
+            return res.status(417).json({
+                message: "unable to find session",
                 success: false,
             })
         }
@@ -18,7 +32,7 @@ const SessionStudentReport = asyncHandler(async (req, res) => {
         // Check if the student has already reported for the session
         const foundSession = await StudentSessionReportingModel.findOne({
             student: id,
-            currentSemester: currentSemester
+            currentSemester: findSession._id
         })
 
         if (foundSession) {
@@ -31,7 +45,7 @@ const SessionStudentReport = asyncHandler(async (req, res) => {
 
         const result = await new StudentSessionReportingModel({
             student: id,
-            currentSemester: currentSemester,
+            currentSemester: findSession._id,
             reported: true
         }).save()
 
@@ -67,7 +81,6 @@ const SessionStudentReport = asyncHandler(async (req, res) => {
                 })
             }
         } else {
-
             save_result = studentFinanceInfo;
         }
 
@@ -98,6 +111,20 @@ const SessionStudentReport = asyncHandler(async (req, res) => {
             })
         }
 
+        //Log the audit trails in the database
+
+        const auditResult = await new SessionOverrideModel({
+            id: regNumber,
+            reason, name, processedBy: "Admin", semester: currentSemester
+        }).save()
+        if (!auditResult) {
+            return res.status(422).json({
+                message: "unable to report for the session",
+                success: false,
+
+            })
+        }
+
         return res.status(200).json({
             message: "session reported",
             data: result,
@@ -114,4 +141,4 @@ const SessionStudentReport = asyncHandler(async (req, res) => {
     }
 })
 
-export default SessionStudentReport;
+export default SessionStudentReportOverride

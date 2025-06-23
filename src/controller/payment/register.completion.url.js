@@ -16,7 +16,6 @@ const C2B_Register_url = asyncHandler(async (req, res) => {
         }
     })
 
-    console.log(server_response.data);
 
 })
 
