@@ -58,4 +58,5 @@ adminRouter.get("/session/get", createSessionMiddlewareController.get_semester)
 adminRouter.post("/session/create", createSessionMiddlewareController.create_session)
 adminRouter.put("/session/:id/toggle", createSessionMiddlewareController.toggle_session)
 adminRouter.put("/session/:id/update-deadline", createSessionMiddlewareController.deadline_update)
+adminRouter.get("/:id/session/reporting-history", createAdminMiddleware.session_student_list)
 export default adminRouter;
