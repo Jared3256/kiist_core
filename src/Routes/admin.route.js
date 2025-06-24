@@ -7,6 +7,7 @@ import createTutorController from "../controller/tutor/createTutorController.js"
 import {multerUpload} from "../config/firebase/firebase.config.js";
 import createAdminMiddleware from "../controller/admin/createAdminMiddleware.js";
 import createSessionMiddlewareController from "../controller/session/createSessionMiddlewareController.js";
+import createAdminGradeMiddlewareController from "../controller/grade/createAdminGradeMiddlewareController.js";
 
 const adminRouter = express.Router();
 
@@ -61,4 +62,10 @@ adminRouter.put("/session/:id/update-deadline", createSessionMiddlewareControlle
 adminRouter.get("/:id/session/reporting-history", createAdminMiddleware.session_student_list)
 adminRouter.get("/session/override/list", createSessionMiddlewareController.session_admin_overrid_list)
 adminRouter.post("/:id/session/student/override", createSessionMiddlewareController.session_admin_override)
+
+/**
+ * Grade Management Router for the admin only
+ */
+adminRouter.get("/grade/list", createAdminGradeMiddlewareController.list)
+adminRouter.post("/grade/create", createAdminGradeMiddlewareController.create)
 export default adminRouter;
