@@ -68,4 +68,5 @@ adminRouter.post("/:id/session/student/override", createSessionMiddlewareControl
  */
 adminRouter.get("/grade/list", createAdminGradeMiddlewareController.list)
 adminRouter.post("/grade/create", createAdminGradeMiddlewareController.create)
+adminRouter.post("/grade/edit", createAdminGradeMiddlewareController.edit)
 export default adminRouter;
