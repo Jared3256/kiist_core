@@ -16,6 +16,7 @@ const GradeCreate = asyncHandler(async (req, res) => {
         const foundStudentGrade = await StudentGradeModel.findOne({
             regNumber: regNumber,
             semester: semester,
+            course: course,
         })
 
         if (foundStudentGrade) {
