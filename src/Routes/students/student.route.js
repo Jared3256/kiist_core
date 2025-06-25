@@ -4,6 +4,7 @@ import {multerUpload} from "../../config/firebase/firebase.config.js";
 import createCourseController from "../../controller/course/createCourseController.js";
 import createDepartmentController from "../../controller/department/createDepartmentController.js";
 import createReportingSessionController from "../../controller/student/session/createReportingSessionController.js";
+import createAdminGradeMiddlewareController from "../../controller/grade/createAdminGradeMiddlewareController.js";
 
 const studentRouter = express.Router();
 
@@ -49,4 +50,9 @@ studentRouter.get("/:id/finance/payment/list", createStudentmiddleware.finance_g
 studentRouter.post("/:id/session/reporting", createReportingSessionController.report_session)
 studentRouter.get("/:id/session/get", createReportingSessionController.session_get)
 
+
+/**
+ * Grades and Transcript
+ */
+studentRouter.get("/:id/transcript/get", createAdminGradeMiddlewareController.student_get)
 export default studentRouter;
