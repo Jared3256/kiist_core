@@ -33,6 +33,7 @@ const system_data = {
     AWS_SECRET_KEY: process.env.AWS_SECRET_KEY,
     AWS_REGION: process.env.AWS_REGION,
     AWS_BUCKETS_NAME: process.env.AWS_BUCKETS_NAME,
+    MAILTRAP_TOKEN: process.env.MAILTRAP_TOKEN
 };
 
 
