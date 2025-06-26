@@ -31,7 +31,7 @@ const StudentAvatar = asyncHandler(async (req, res) => {
             },
         }, {new: true, runValidators: true})
 
-        if (foundUser) {
+        if (!foundUser) {
             return res.status(422).json({
                 message: "Unable to update the student avatar", success: false
             })
