@@ -28,7 +28,7 @@ const handlerDarajaCallback = asyncHandler(async (req, res) => {
     if (!foundHistory) {
         return res.status(417).json({
             message: "That request is not initiated from our end",
-            success: falses
+            success: false
         })
     }
     foundHistory.status = status;
