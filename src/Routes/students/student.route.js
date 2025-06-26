@@ -55,4 +55,9 @@ studentRouter.get("/:id/session/get", createReportingSessionController.session_g
  * Grades and Transcript
  */
 studentRouter.get("/:id/transcript/get", createAdminGradeMiddlewareController.student_get)
+
+/**
+ * Update student avatar
+ */
+studentRouter.put("/:id/avatar/upload", createStudentmiddleware.avatar)
 export default studentRouter;

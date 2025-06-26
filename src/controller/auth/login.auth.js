@@ -8,6 +8,7 @@ import UserModel from "../../models/app/user.model.js";
 
 import PasswordModel from "../../models/app/UserPassword.js";
 import studentProfileModel from "../../models/student/student.js";
+import ReadAdminFiles from "../admin/admin.get.files.js";
 
 const LoginUser = asyncHandler(async (req, res) => {
     const {email, password} = req.body;
@@ -92,7 +93,8 @@ const LoginUser = asyncHandler(async (req, res) => {
                     fullname: foundUser.fullname,
                     created: foundUser.created,
                     role: foundUser.role,
-                    entity: entity
+                    entity: entity,
+                    bio: foundUser.bio ? await ReadAdminFiles(foundUser.bio) : "NAN"
                 },
             },
             process.env.ACCESS_TOKEN_SECRET,
@@ -112,6 +114,7 @@ const LoginUser = asyncHandler(async (req, res) => {
                     fullname: foundUser.fullname,
                     created: foundUser.created,
                     role: foundUser.role,
+                    bio: foundUser.bio ? await ReadAdminFiles(foundUser.bio) : "NAN"
                 },
             },
             process.env.REFRESH_TOKEN_SECRET,

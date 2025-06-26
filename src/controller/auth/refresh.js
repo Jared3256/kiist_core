@@ -2,6 +2,7 @@ import asyncHandler from "express-async-handler";
 import UserModel from "../../models/app/user.model.js";
 import jwt from "jsonwebtoken";
 import studentProfileModel from "../../models/student/student.js";
+import ReadAdminFiles from "../admin/admin.get.files.js";
 
 const refreshToken = asyncHandler(async (req, res) => {
     const cookies = req.cookies;
@@ -53,7 +54,8 @@ const refreshToken = asyncHandler(async (req, res) => {
                         fullname: foundUser.fullname,
                         created: foundUser.created,
                         role: foundUser.role,
-                        entity: entity
+                        entity: entity,
+                        bio: foundUser.bio ? `${await ReadAdminFiles(foundUser.bio)}` : "NAN"
                     },
                 },
                 process.env.ACCESS_TOKEN_SECRET,

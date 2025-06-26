@@ -1,7 +1,6 @@
 import asyncHandler from "express-async-handler";
 import DepartmentModel from "../../models/app/department.model.js";
 import LecturerModel from "../../models/tutor/Tutor.model.js";
-import ReadAdminFiles from "../admin/admin.get.files.js";
 import CourseModel from "../../models/app/course.model.js";
 
 const ListAllDepartment = asyncHandler(async (req, res) => {

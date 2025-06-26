@@ -11,6 +11,7 @@ import {ReadStudentTranscript} from "./student.get.files.js";
 import UpdateStudentDocumentInfo from "./student.documents.js";
 import StudentFinanceGetInformation from "./finance/student.finance.getInformation.js";
 import StudentFinancePaymentHistory from "./finance/student.finance.payment.history.js";
+import StudentAvatar from "./student.avatar.js";
 
 const createStudentMiddleware = () => {
     const methods = {};
@@ -32,6 +33,9 @@ const createStudentMiddleware = () => {
     // Finance related methods
     methods.finance_get_information = (req, res) => StudentFinanceGetInformation(req, res)
     methods.finance_get_payment_history = (req, res) => StudentFinancePaymentHistory(req, res)
+
+    // Update student profile
+    methods.avatar = (req, res) => StudentAvatar(req, res)
     return methods;
 };
 
