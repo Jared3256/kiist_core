@@ -23,6 +23,7 @@ const handlerDarajaCallback = asyncHandler(async (req, res) => {
     const foundHistory = await StudentPaymentHistoryModel.findOne({
         receiptId: merchantRequestId
     })
+    console.log(foundHistory)
 
     if (!foundHistory) {
         return res.status(417).json({
