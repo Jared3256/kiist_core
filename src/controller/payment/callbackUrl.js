@@ -22,7 +22,14 @@ const handlerDarajaCallback = asyncHandler(async (req, res) => {
 
     const foundHistory = await StudentPaymentHistoryModel.findOne({
         receiptId: merchantRequestId
-    },)
+    })
+
+    if (!foundHistory) {
+        return res.status(417).json({
+            message: "That request is not initiated from our end",
+            success: falses
+        })
+    }
     foundHistory.status = status;
 
     foundHistory.receiptId = receiptId;
