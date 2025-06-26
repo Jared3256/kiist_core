@@ -19,7 +19,6 @@ const handlerDarajaCallback = asyncHandler(async (req, res) => {
             ? merchantRequestId
             : callbackMetadata?.Item?.find(item => item.Name === "MpesaReceiptNumber")?.Value;
 
-    c
 
     const foundHistory = await StudentPaymentHistoryModel.findOne({
         receiptId: merchantRequestId
