@@ -2,10 +2,10 @@ import {
     PASSWORD_RESET_REQUEST_TEMPLATE,
     PASSWORD_RESET_SUCCESS_TEMPLATE,
     VERIFICATION_EMAIL_TEMPLATE,
-    REPORT_TEMPLATE,
+    REPORT_TEMPLATE, LEC_WELCOME_TEMPLATE,
 } from "./emailTemplate.js";
 import {mailtrap_client, mailtrap_sender} from "./mailtrap.config.js";
-import LEC_WELCOME_TEMPLATE from "sinon";
+
 
 const sendVerificationEmail = async (email, verificationToken) => {
     const recipient = [{email}];
