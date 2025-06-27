@@ -3,6 +3,7 @@ import refreshToken from "./refresh.js";
 import logout from "./logout.js";
 import ResetPassword from "./reset.password.js";
 import changePassword from "./change.password.js";
+import verifyEmail from "./verify.email.js";
 
 const createAuthcontroller = () => {
     const methods = {};
@@ -12,6 +13,7 @@ const createAuthcontroller = () => {
     methods.logout = (req, res) => logout(req, res);
     methods.reset_password = (req, res) => ResetPassword(req, res);
     methods.change_password = (req, res) => changePassword(req, res);
+    methods.verify_email = (req, res) => verifyEmail(req, res);
     return methods;
 };
 

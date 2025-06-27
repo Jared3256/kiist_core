@@ -1,14 +1,14 @@
 import asyncHandler from "express-async-handler"
 import UserPassword from "../../models/app/UserPassword.js";
 import UserModel from "../../models/app/user.model.js";
-import {sendWelcomeEmail} from "../../utils/mailtrap/email.js";
+import {sendLecWelcomeEmail, sendWelcomeEmail} from "../../utils/mailtrap/email.js";
 
 const VerifyEmail = asyncHandler(async (req, res) => {
     const {code} = req.body;
     const updates = {
         emailToken: null,
         emailTokenExpiresAt: null,
-        emailVerified: null,
+        emailVerified: true,
     };
 
     try {
@@ -40,14 +40,19 @@ const VerifyEmail = asyncHandler(async (req, res) => {
         await user.save();
 
         // send welcome email to the user
-        await sendWelcomeEmail(user.email, user.name);
+
+        if (user.role === "tutor") {
+            await sendLecWelcomeEmail(user.email, user.email, user.email)
+        } else {
+            await sendWelcomeEmail(user.email, user.name);
+        }
+
 
         res.status(200).json({
             message: "email verified successfully",
             success: true,
         });
     } catch (error) {
-        console.log(error);
         return res.status(417).json({
             message: "error verifying account.",
             success: false,

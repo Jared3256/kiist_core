@@ -4,6 +4,7 @@ import LecturerModel from "../../models/tutor/Tutor.model.js";
 const AssignClasses = asyncHandler(async (req, res) => {
     const {assignedCourses, lecturer, schedule} = req.body;
 
+
     if (String(lecturer).length !== 24) {
         return res.status(411).json({
             message: "Invalid Id",
@@ -27,7 +28,7 @@ const AssignClasses = asyncHandler(async (req, res) => {
 
         if (!result) {
             return res.status(422).json({
-                message: "Failed to assign courses",
+                message: "Failed to assign courses.Try again",
                 success: false,
                 data: null
             })
@@ -41,6 +42,8 @@ const AssignClasses = asyncHandler(async (req, res) => {
 
 
     } catch (e) {
+        console.log(e)
+
         return res.status(422).json({
             message: "Failed to assign courses",
             success: false,

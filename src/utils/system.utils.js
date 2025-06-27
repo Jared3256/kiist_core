@@ -3,7 +3,7 @@ import {v7 as uuid} from "uuid";
 
 const generateVerificationToken = () => {
     const code = Math.floor(100000 + Math.random() * 900000).toString();
-    console.log("Verification Code", code);
+
     return code;
 };
 
@@ -25,7 +25,6 @@ const generateTokenAndSetCookie = (res, id) => {
 const generateResetToken = () => {
     let token = "";
     token = String(uuid());
-    console.log("Token ", token);
     return token;
 };
 

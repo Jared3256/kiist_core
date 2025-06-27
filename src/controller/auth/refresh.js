@@ -3,6 +3,7 @@ import UserModel from "../../models/app/user.model.js";
 import jwt from "jsonwebtoken";
 import studentProfileModel from "../../models/student/student.js";
 import ReadAdminFiles from "../admin/admin.get.files.js";
+import TutorModel from "../../models/tutor/Tutor.model.js";
 
 const refreshToken = asyncHandler(async (req, res) => {
     const cookies = req.cookies;
@@ -42,6 +43,10 @@ const refreshToken = asyncHandler(async (req, res) => {
             if (String(foundUser.role) === "student") {
                 entity = await studentProfileModel.findOne({
                     registrationNumber: foundUser.regNumber
+                })
+            } else if (foundUser.role === "tutor") {
+                entity = await TutorModel.findOne({
+                    email: foundUser.email
                 })
             }
             const accessToken = jwt.sign(

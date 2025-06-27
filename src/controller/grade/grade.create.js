@@ -3,7 +3,7 @@ import StudentGradeModel from "../../models/grade/grade.js";
 
 const GradeCreate = asyncHandler(async (req, res) => {
     const {student, regNumber, course, assignment, final, semester} = req.body
-    console.log(req.body)
+
 
     try {
         if (!student || !regNumber || !course || !semester) {

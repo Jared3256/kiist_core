@@ -14,4 +14,5 @@ authRouter.post("/reset-password", createAuthController.reset_password)
 
 authRouter.post("/change-password", createAuthController.change_password)
 
+authRouter.post("/verify-email", createAuthController.verify_email)
 export default authRouter;

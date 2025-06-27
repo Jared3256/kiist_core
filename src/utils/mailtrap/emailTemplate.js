@@ -13,13 +13,19 @@ const VERIFICATION_EMAIL_TEMPLATE = `
   <div style="background-color: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
     <p>Hello,</p>
     <p>Thank you for signing up! Your verification code is:</p>
+    
     <div style="text-align: center; margin: 30px 0;">
-      <span style="font-size: 32px; font-weight: bold; letter-spacing: 5px; color: #4CAF50;">{verificationCode}</span>
+     <div style=" margin-top: 20px;
+      background: #f0f4f8;
+      padding: 15px;
+      border-left: 4px solid #4CAF50;
+      border-radius: 4px;">
+      <span style="font-size: 32px; font-weight: bold; letter-spacing: 5px; color: #4CAF50;">{verificationCode}</span></div>
     </div>
     <p>Enter this code on the verification page to complete your registration.</p>
     <p>This code will expire in 15 minutes for security reasons.</p>
     <p>If you didn't create an account with us, please ignore this email.</p>
-    <p>Best regards,<br>Your App Team</p>
+    <p>Best regards,<br>Kisii Impact Institute<br>Sir. Jared Odhiambo</p>
   </div>
   <div style="text-align: center; margin-top: 20px; color: #888; font-size: 0.8em;">
     <p>This is an automated message, please do not reply to this email.</p>
@@ -27,6 +33,7 @@ const VERIFICATION_EMAIL_TEMPLATE = `
 </body>
 </html>
 `;
+
 
 const REPORT_TEMPLATE = `
 <!DOCTYPE html>
@@ -100,6 +107,101 @@ const PASSWORD_RESET_SUCCESS_TEMPLATE = `
 </html>
 `;
 
+
+const LEC_WELCOME_TEMPLATE = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome Email</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f9fc;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    .container {
+      max-width: 650px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h4 {
+      color: #2d6cdf;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #2d6cdf;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-top: 20px;
+    }
+    .note {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #aa0000;
+    }
+    .credentials {
+      margin-top: 20px;
+      background: #f0f4f8;
+      padding: 15px;
+      border-left: 4px solid #2d6cdf;
+      border-radius: 4px;
+    }
+    .footer {
+      font-size: 12px;
+      color: #777;
+      margin-top: 40px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+  <div style="margin-bottom:10px;text-align: center;">
+
+<img src=
+        "https://scontent.fnbo19-2.fna.fbcdn.net/v/t39.30808-6/219040140_105522371818357_769414503745360246_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHjogr2NfG8T4vFMHLPFcjLrsAbrVMxY5GuwButUzFjkdImpwboEGa74rde_--E5Fl-zLx7HPaD4w_0qToy7wGA&_nc_ohc=9_hSt1Dg6Z0Q7kNvwF83a4S&_nc_oc=AdmyuGRf4Qluae1AWBdGc5AMdPQsaAVHw7lGhsmJ3tySEzO2alda82EmNaWMNpYqicjMQzdOejL3BMrsMIgtXxPP&_nc_zt=23&_nc_ht=scontent.fnbo19-2.fna&_nc_gid=SDtL-mb3KPiChE1XJMyi5A&oh=00_AfMNkdFyhzKRpmm-5NiG2H2qALmKPHCobov9aSBoVqRbGw&oe=6864A77A"
+         width="100" height="100" 
+         alt="Kisii Impact">
+</div>
+    <h4>Welcome to KIIST!</h4>
+
+    <p>Dear Lecturer,</p>
+
+    <p>We’re excited to have you on board as part of the academic team at <strong>Kisii Impact Institute of Science and Technology</strong>. Your teaching credentials have been created, and you can now access the lecturer portal using the following login information:</p>
+
+    <div class="credentials">
+      <p><strong>Username:</strong> {{username}}</p>
+      <p><strong>Password:</strong> {{password}}</p>
+    </div>
+
+    <p>You can log in to the portal using the button below:</p>
+
+    <a href="https://kiist.vercel.app/auth/login" class="btn">Login to Your Account</a>
+
+    <div class="note">
+      ⚠️ Please change your password immediately after logging in to ensure your account security.
+    </div>
+
+    <p>We’re here to support you. If you have any questions, feel free to contact the IT support team.</p>
+
+   
+<p>Welcome once again!,<br><br>Kisii Impact Institute<br><br>Sir. Jared Odhiambo</p>
+    <div class="footer">
+      © 2025 KIIST. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>
+`
 const PASSWORD_RESET_REQUEST_TEMPLATE = `
 <!DOCTYPE html>
 <html lang="en">

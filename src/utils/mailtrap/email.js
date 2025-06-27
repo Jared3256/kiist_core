@@ -5,6 +5,7 @@ import {
     REPORT_TEMPLATE,
 } from "./emailTemplate.js";
 import {mailtrap_client, mailtrap_sender} from "./mailtrap.config.js";
+import LEC_WELCOME_TEMPLATE from "sinon";
 
 const sendVerificationEmail = async (email, verificationToken) => {
     const recipient = [{email}];
@@ -33,13 +34,44 @@ const sendVerificationEmail = async (email, verificationToken) => {
 
         const response = await mailtrap_client.send(mailOptions);
 
-        console.log("Email sent successfully", response);
+    } catch (error) {
+
+        throw new Error(`Error sending verification email: ${error}`);
+    }
+};
+
+
+const sendLecWelcomeEmail = async (email, username, password) => {
+    const recipient = [{email}];
+    try {
+        const mailOptions = {
+            from: mailtrap_sender,
+            to: recipient,
+            subject: "Welcome",
+            html: LEC_WELCOME_TEMPLATE.replace(
+                "{{username}}",
+                username
+            ).replace("{{password}}", password),
+            category: "Welcome Email",
+        };
+
+        // Sanitize the mailOptions object
+        Object.keys(mailOptions).forEach((key) => {
+            if (typeof mailOptions[key] === "string") {
+                mailOptions[key] = mailOptions[key]
+                    .trim()
+                    .replace(/[\u0080-\uFFFF]/g, "");
+            }
+        });
+
+        const response = await mailtrap_client.send(mailOptions);
+
     } catch (error) {
         console.error(`Error sending verification`, error);
 
         throw new Error(`Error sending verification email: ${error}`);
     }
-};
+}
 
 const sendWelcomeEmail = async (email, name) => {
     const recipient = [{email}];
@@ -59,9 +91,7 @@ const sendWelcomeEmail = async (email, name) => {
             },
         });
 
-        console.log("Welcome email sent successfully", response);
     } catch (error) {
-        console.error(`Error sending welcome email`, error);
 
         throw new Error(`Error sending welcome email: ${error}`);
     }
@@ -79,7 +109,6 @@ const sendPasswordResetEmail = async (email, resetURL) => {
             category: "Password Reset",
         });
     } catch (error) {
-        console.error(`Error sending password reset email`, error);
 
         throw new Error(`Error sending password reset email: ${error}`);
     }
@@ -97,9 +126,7 @@ const sendResetSuccessEmail = async (email) => {
             category: "Password Reset",
         });
 
-        console.log("Password reset email sent successfully", response);
     } catch (error) {
-        console.error(`Error sending password reset success email`, error);
 
         throw new Error(`Error sending password reset success email: ${error}`);
     }
@@ -117,15 +144,14 @@ const sendErrorFoundEmail = async (email, error, info) => {
             category: "System Error - Bugs",
         });
 
-        console.log("Error email sent successfully", response);
     } catch (error) {
-        console.error(`Error sending bug email`, error);
 
         throw new Error(`Error sending bug email: ${error}`);
     }
 };
 
 export {
+    sendLecWelcomeEmail,
     sendPasswordResetEmail,
     sendResetSuccessEmail,
     sendWelcomeEmail,

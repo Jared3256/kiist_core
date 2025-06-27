@@ -30,8 +30,8 @@ const ResetPassword = asyncHandler(async (req, res) => {
         await passwordModel.save();
 
         // send email
-        const link = `http://localhost:5173/auth/reset_password/${resetToken}`;
-        console.log(link);
+        const link = `https://kiist.vercel.app/auth/reset_password/${resetToken}`;
+
         await sendPasswordResetEmail(email, link);
 
         return res.status(200).json({
@@ -39,7 +39,6 @@ const ResetPassword = asyncHandler(async (req, res) => {
             message: "check your email for reset token",
         });
     } catch (error) {
-        console.log(error)
     }
 })
 
