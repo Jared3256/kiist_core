@@ -5,6 +5,7 @@ import c2b_register_url from "./validation.js";
 import JengaAuthorization from "./Jenga/jenga.authorization.js";
 import JengaStkpush from "./Jenga/jenga.stkpush.js";
 import JengaCallback from "./Jenga/jenga.callback.js";
+import JengaCallbackIpn from "./Jenga/jenga.callback.ipn.js";
 
 const createPaymentController = () => {
     const methods = {};
@@ -17,6 +18,7 @@ const createPaymentController = () => {
     methods.jenga_authorize = (req, res) => JengaAuthorization(req, res)
     methods.jenga_stkpush = (req, res) => JengaStkpush(req, res);
     methods.jenga_callback = (req, res) => JengaCallback(req, res);
+    methods.jenga_callback_ipn = (req, res) => JengaCallbackIpn(req, res)
     return methods;
 };
 

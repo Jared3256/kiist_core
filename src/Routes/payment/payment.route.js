@@ -12,4 +12,5 @@ paymentRouter.post("/validation", createPAYController.validation)
 paymentRouter.post("/jenga/authorization", createPAYController.jenga_authorize)
 paymentRouter.post("/jenga/stkpush", createPAYController.jenga_stkpush)
 paymentRouter.post("/j/back", createPAYController.jenga_callback)
+paymentRouter.post("/j2/back", createPAYController.jenga_callback_ipn)
 export default paymentRouter;

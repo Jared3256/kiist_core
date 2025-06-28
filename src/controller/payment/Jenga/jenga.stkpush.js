@@ -31,29 +31,42 @@ const JengaStkpush = asyncHandler(async (req, res) => {
         }
 
         const accessToken = await JengaAuthorization(req, res)
-        const reference = String(shortid.generate() + shortid.generate()).toUpperCase()
+        const order_reference = String(shortid.generate() + shortid.generate()).toUpperCase()
+        const payment_reference = String(shortid.generate() + shortid.generate()).toUpperCase()
 
-
-        const message = `${system_data.JENGA_MERCHANT_ACCOUNT_NUMBER}${reference}${mobileNumber}Safaricom${amount}KES`
+        const message = `${order_reference}KES${mobileNumber}${amount}`
 
         const signature = await GenerateJengaSignature(message)
 
         const data = await axios.post(system_data.JENGA_DEV_STK_URL, {
-            "merchant": {
-                "accountNumber": system_data.JENGA_MERCHANT_ACCOUNT_NUMBER,
+            "order": {
+                "orderReference": order_reference, //Order reference, should be unique per order
+                "orderAmount": amount, //Origininal order amount
+                "orderCurrency": "KES",
+                "source": "APICHECKOUT",
                 "countryCode": "KE",
-                "name": system_data.JENGA_MERCHANT_NAME
+                "description": "Purchase"
+            },
+            "customer": {
+                "name": "John Doe",
+                "email": "xyx2@gmail.com",
+                "phoneNumber": "0722000111",
+                "identityNumber": "0000000",
+                "firstAddress": "",
+                "secondAddress": ""
             },
             "payment": {
-                "ref": reference,
-                "amount": amount,
-                "currency": "KES",
-                "telco": "Safaricom",
-                "mobileNumber": mobileNumber,
-                "date": format(new Date(), "yyyy-MM-dd"),
+                "paymentReference": payment_reference, //Should be unique per request
+                "paymentCurrency": "KES",
+                "channel": "MOBILE",
+                "service": "MPESA",
+                "provider": "JENGA",
                 "callBackUrl": "https://kiist-core-production.up.railway.app/api/v1/payment/j/back",
-                "pushType": "USSD"
-            }
+                "details": {
+                    "msisdn": mobileNumber, //Number to push the stk
+                    "paymentAmount": amount //Amount to pay on the request
+                }
+            },
         }, {
             headers: {
                 "Signature": signature,
@@ -65,7 +78,7 @@ const JengaStkpush = asyncHandler(async (req, res) => {
         if (data.data.status) {
             const result = await new StudentPaymentHistoryModel({
                 student: id,
-                receiptId: reference,
+                receiptId: order_reference,
                 amount: amount,
                 payment: "Mpesa"
             }).save()
@@ -80,6 +93,7 @@ const JengaStkpush = asyncHandler(async (req, res) => {
         }
 
     } catch (err) {
+        console.log(err)
 
         return res.status(422).json({
             message: "Unable to initiate payment",

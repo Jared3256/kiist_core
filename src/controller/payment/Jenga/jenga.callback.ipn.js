@@ -2,16 +2,14 @@ import asyncHandler from "express-async-handler";
 import StudentPaymentHistoryModel from "../../../models/student/student.payment.history.js";
 import StudentFinanceModel from "../../../models/student/student.finance.js";
 
-const JengaCallback = asyncHandler(async (req, res) => {
+const JengaCallbackIpn = asyncHandler(async (req, res) => {
     console.log(req.body)
 
+    const {customer, transaction} = req.body;
+
     try {
-        const {status, transactionReference} = req.body;
-
-        let transaction_status = status ? "completed" : "cancelled"
-
         const foundHistory = await StudentPaymentHistoryModel.findOne({
-            receiptId: transactionReference
+            receiptId: customer.reference
         })
 
         if (!foundHistory) {
@@ -21,10 +19,12 @@ const JengaCallback = asyncHandler(async (req, res) => {
             })
         }
 
-        foundHistory.status = transaction_status;
+        foundHistory.status = transaction.status === "SUCCESS" ? "completed" : "cancelled";
+        foundHistory.receiptId = transaction.reference;
+
         await foundHistory.save()
 
-        if (foundHistory && status) {
+        if (foundHistory && transaction.status === "SUCCESS") {
             const foundStudentPayment = await StudentFinanceModel.findOne({
                 student: foundHistory.student
             })
@@ -35,13 +35,11 @@ const JengaCallback = asyncHandler(async (req, res) => {
             }
 
         }
-
         res.status(200)
     } catch (e) {
         console.log(e)
 
     }
-
 })
 
-export default JengaCallback;
+export default JengaCallbackIpn
