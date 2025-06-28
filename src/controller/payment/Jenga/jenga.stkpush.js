@@ -5,26 +5,36 @@ import system_data from "../../../config/environment/env.constants.js";
 import shortid from "shortid";
 import axios from "axios";
 import {format} from 'date-fns';
+import studentProfileModel from "../../../models/student/student.js";
+import StudentPaymentHistoryModel from "../../../models/student/student.payment.history.js";
 
 const JengaStkpush = asyncHandler(async (req, res) => {
 
-    const {amount, mobileNumber} = req.body;
+    const {amount, mobileNumber, id} = req.body;
     try {
 
-        if (!amount || !mobileNumber || amount < 1) {
+        if (!amount || !mobileNumber || amount < 1 || !id || String(id).length !== 24) {
             return res.status(411).json({
                 message: "required details are missing",
                 success: false,
             })
         }
 
+        // Check if the Id represents a student
+        const foundStudent = await studentProfileModel.findById(id)
+
+        if (!foundStudent) {
+            return res.status(417).json({
+                message: "No student found",
+                success: false
+            })
+        }
 
         const accessToken = await JengaAuthorization(req, res)
         const reference = String(shortid.generate() + shortid.generate()).toUpperCase()
 
 
         const message = `${system_data.JENGA_MERCHANT_ACCOUNT_NUMBER}${reference}${mobileNumber}Safaricom${amount}KES`
-
 
         const signature = await GenerateJengaSignature(message)
 
@@ -53,6 +63,19 @@ const JengaStkpush = asyncHandler(async (req, res) => {
         })
 
         if (data.data.status) {
+            const result = await new StudentPaymentHistoryModel({
+                student: id,
+                receiptId: reference,
+                amount: amount,
+                payment: "Mpesa"
+            }).save()
+
+            if (!result) {
+                return res.status(422).json({
+                    message: "Unable to save payment details",
+                    data: null, success: false
+                })
+            }
             return res.status(200).json({...data.data})
         }
 

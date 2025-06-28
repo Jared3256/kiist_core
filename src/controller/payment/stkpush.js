@@ -37,7 +37,7 @@ const daraja_stkpush = asyncHandler(async (req, res) => {
             system_data.STKPUSH_URI,
             {
                 "BusinessShortCode": 174379,
-                "Password": "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMjUwNjE5MTI1NTQw",
+                "Password": system_data.PASSWORD,
                 "Timestamp": "20250619125540",
                 "TransactionType": "CustomerPayBillOnline",
                 "Amount": amount,
