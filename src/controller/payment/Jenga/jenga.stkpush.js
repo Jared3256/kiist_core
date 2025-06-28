@@ -2,11 +2,10 @@ import asyncHandler from "express-async-handler"
 import JengaAuthorization from "./jenga.authorization.js";
 import GenerateJengaSignature from "./geneateSignature.js";
 import system_data from "../../../config/environment/env.constants.js";
-import shortid from "shortid";
 import axios from "axios";
-import {format} from 'date-fns';
 import studentProfileModel from "../../../models/student/student.js";
 import StudentPaymentHistoryModel from "../../../models/student/student.payment.history.js";
+import {v4 as uuidv4} from "uuid";
 
 const JengaStkpush = asyncHandler(async (req, res) => {
 
@@ -31,8 +30,8 @@ const JengaStkpush = asyncHandler(async (req, res) => {
         }
 
         const accessToken = await JengaAuthorization(req, res)
-        const order_reference = String(shortid.generate() + shortid.generate()).toUpperCase()
-        const payment_reference = String(shortid.generate() + shortid.generate()).toUpperCase()
+        const order_reference = String(uuidv4()).slice(24, 36).toUpperCase()
+        const payment_reference = String(uuidv4()).slice(24, 36).toUpperCase()
 
         const message = `${order_reference}KES${mobileNumber}${amount}`
 
