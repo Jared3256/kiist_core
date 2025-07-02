@@ -5,6 +5,7 @@ import createCourseController from "../../controller/course/createCourseControll
 import createDepartmentController from "../../controller/department/createDepartmentController.js";
 import createReportingSessionController from "../../controller/student/session/createReportingSessionController.js";
 import createAdminGradeMiddlewareController from "../../controller/grade/createAdminGradeMiddlewareController.js";
+import createEXAMControllerMiddleware from "../../controller/exams/createEXAMControllerMiddleware.js";
 
 const studentRouter = express.Router();
 
@@ -60,4 +61,12 @@ studentRouter.get("/:id/transcript/get", createAdminGradeMiddlewareController.st
  * Update student avatar
  */
 studentRouter.put("/:id/avatar/upload", createStudentmiddleware.avatar)
+
+
+/**
+ * List All Cats for the Semester
+ */
+studentRouter.get("/cats/list", createEXAMControllerMiddleware.student_list_cats)
+studentRouter.post("/:id/cats/submit", createEXAMControllerMiddleware.student_submit_cat)
+studentRouter.get("/:id/cats/completed/list", createEXAMControllerMiddleware.student_my_cats_list)
 export default studentRouter;
