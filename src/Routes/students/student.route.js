@@ -75,4 +75,5 @@ studentRouter.get("/:id/cats/completed/list", createEXAMControllerMiddleware.stu
  */
 studentRouter.post("/attendance/create", createStudentmiddleware.attendance)
 studentRouter.get("/attendance/list", createStudentmiddleware.attendance_list)
+studentRouter.get("/attendance/overview", createStudentmiddleware.attendance_overview)
 export default studentRouter;

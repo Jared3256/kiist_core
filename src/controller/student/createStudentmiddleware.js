@@ -14,6 +14,7 @@ import StudentFinancePaymentHistory from "./finance/student.finance.payment.hist
 import StudentAvatar from "./student.avatar.js";
 import StudentAttendanceMark from "./attendance/student.attendance.mark.js";
 import StudentAttendanceList from "./attendance/student.attendance.list.js";
+import StudentAttendencePerformance from "./attendance/student.attendence.performance.js";
 
 const createStudentMiddleware = () => {
     const methods = {};
@@ -43,6 +44,7 @@ const createStudentMiddleware = () => {
     // method for marking attendance register
     methods.attendance = (req, res) => StudentAttendanceMark(req, res)
     methods.attendance_list = (req, res) => StudentAttendanceList(req, res)
+    methods.attendance_overview = (req, res) => StudentAttendencePerformance(req, res)
     return methods;
 };
 
