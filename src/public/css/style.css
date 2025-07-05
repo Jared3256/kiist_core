@@ -1,21 +1,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
-*{
-    margin:0;
+* {
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html{
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 2.8rem;
+html {
+    font-family: 'TTSquaresCondensed-Thin';
+    font-size: 1.8rem;
 }
 
-body{
+body {
     min-height: 100vh;
-    background-color: rgb(0, 0, 0);
-    color: whitesmoke;
+    background: #0f0026;
+    color: #afe3d7;
     display: grid;
     place-content: center;
     padding: 1rem;
+}
+
+@font-face {
+    font-family: 'TTSquaresCondensed-Thin';
+    src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/39132/TTSquaresCondensed-Thin.eot');
+    src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/39132/TTSquaresCondensed-Thin.eot?#iefix') format('embedded-opentype'), url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/39132/TTSquaresCondensed-Thin.woff2') format('woff2'), url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/39132/TTSquaresCondensed-Thin.woff') format('woff'), url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/39132/TTSquaresCondensed-Thin.ttf') format('truetype');
+}
+
+
+/*body {*/
+/*    font: 1em "TTSquaresCondensed-Thin";*/
+/*    background: #0f0026;*/
+/*    color: #afe3d7;*/
+/*    overflow: hidden;*/
+/*    opacity: 0;*/
+/*}*/
+
+h1 {
+    font: normal 6.875em/1.25 "TTSquaresCondensed-Thin";
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0;
+}
+
+h2 {
+    font: normal 6.875em/1.25 "TTSquaresCondensed-Thin";
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0;
+}
+
+
+#header h1 .word2, #header h1 em {
+    font-style: normal;
+    color: #00ffc3;
+    text-shadow: 0 0 10px #00ffc3;
 }

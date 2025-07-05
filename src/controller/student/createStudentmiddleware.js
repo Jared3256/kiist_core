@@ -12,6 +12,8 @@ import UpdateStudentDocumentInfo from "./student.documents.js";
 import StudentFinanceGetInformation from "./finance/student.finance.getInformation.js";
 import StudentFinancePaymentHistory from "./finance/student.finance.payment.history.js";
 import StudentAvatar from "./student.avatar.js";
+import StudentAttendanceMark from "./attendance/student.attendance.mark.js";
+import StudentAttendanceList from "./attendance/student.attendance.list.js";
 
 const createStudentMiddleware = () => {
     const methods = {};
@@ -36,6 +38,11 @@ const createStudentMiddleware = () => {
 
     // Update student profile
     methods.avatar = (req, res) => StudentAvatar(req, res)
+
+
+    // method for marking attendance register
+    methods.attendance = (req, res) => StudentAttendanceMark(req, res)
+    methods.attendance_list = (req, res) => StudentAttendanceList(req, res)
     return methods;
 };
 

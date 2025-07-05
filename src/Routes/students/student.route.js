@@ -69,4 +69,10 @@ studentRouter.put("/:id/avatar/upload", createStudentmiddleware.avatar)
 studentRouter.get("/cats/list", createEXAMControllerMiddleware.student_list_cats)
 studentRouter.post("/:id/cats/submit", createEXAMControllerMiddleware.student_submit_cat)
 studentRouter.get("/:id/cats/completed/list", createEXAMControllerMiddleware.student_my_cats_list)
+
+/**
+ * Mark attendance register
+ */
+studentRouter.post("/attendance/create", createStudentmiddleware.attendance)
+studentRouter.get("/attendance/list", createStudentmiddleware.attendance_list)
 export default studentRouter;

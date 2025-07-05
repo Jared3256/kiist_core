@@ -10,7 +10,7 @@ import systemRouter from "./Routes/system.route.js";
 import morgan from "morgan";
 import http from "http";
 import {Server as SocketIo} from 'socket.io';
-
+import path from 'path';
 
 // create our Express app
 const app = express();
@@ -22,9 +22,9 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 
+app.set('view engine', 'ejs');
 app.use(cookieParser());
-
-app.use(express.static("./public/css"));
+app.use(express.static("./public/css/"));
 
 app.use("/", rootRouter);
 app.use("/api/v1", systemRouter);
