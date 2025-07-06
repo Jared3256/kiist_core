@@ -57,13 +57,13 @@ const StudentAttendencePerformance = asyncHandler(async (req, res) => {
         const start = new Date(year, month - 1, 1)
 
         const number_of_weeks = differenceInWeeks(new Date(), start)
-        console.log(number_of_weeks)
+
         //Assuming that each weeks each lesson is scheduled twice
 
-        const total_classes = number_of_weeks * foundUnits.length * 2
-        console.log(total_classes)
+        const total_classes = number_of_weeks * foundUnits.length
+
         const percentage = Math.ceil((result.length / total_classes) * 100)
-        console.log(percentage)
+
         return res.status(200).json({
             message: "success",
             success: true,
