@@ -37,6 +37,7 @@ const createStudentMiddleware = () => {
     methods.finance_get_information = (req, res) => StudentFinanceGetInformation(req, res)
     methods.finance_get_payment_history = (req, res) => StudentFinancePaymentHistory(req, res)
 
+
     // Update student profile
     methods.avatar = (req, res) => StudentAvatar(req, res)
 
