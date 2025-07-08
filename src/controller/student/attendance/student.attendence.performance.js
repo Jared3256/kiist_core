@@ -24,7 +24,6 @@ const StudentAttendencePerformance = asyncHandler(async (req, res) => {
             regNumber: regNumber, role: "student"
         })
 
-        console.log(student)
         const foundUnits = await UnitRegistrationModel.find({student: student._id})
 
         if (foundUnits.length < 1) {

@@ -4,6 +4,7 @@ import AdminStudentRemove from "./admin.student.remove.js";
 import SessionStudentListType from "../session/session.student.list.type.js";
 import AdminStudentFinanceInformation from "./student/admin.student.finance.information.js";
 import AdminStudentFinancePaymentHistory from "./student/admin.student.finance.payment.history.js";
+import AdminStudentFinancePostPayment from "./student/admin.student.finance.post.payment.js";
 
 const createAdminMiddleware = () => {
     const methods = {}
@@ -21,6 +22,7 @@ const createAdminMiddleware = () => {
      */
     methods.student_finance_info = (req, res) => AdminStudentFinanceInformation(req, res)
     methods.student_finance_history = (req, res) => AdminStudentFinancePaymentHistory(req, res)
+    methods.student_finance_create = (req, res) => AdminStudentFinancePostPayment(req, res)
     return methods
 }
 

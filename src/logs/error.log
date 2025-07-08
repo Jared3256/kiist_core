@@ -40,3 +40,5 @@
 2024-10-25	19:12:52		26e1ecf9-86bc-4ded-ac11-525a87103a19		ReferenceError: __dirname is not defined 	GET 	/	 undefined
 2024-11-01	18:22:00		9be1174b-7b39-4d49-bd5e-4c5df3d011f5		ValidationError: NetUser validation failed: phone_number: Path `phone_number` is required. 	POST 	/net/api/sessions/create	 undefined
 2024-11-01	18:22:11		82a90578-4215-4f82-8a61-6296a2c52609		ValidationError: NetUser validation failed: phone_number: Path `phone_number` is required. 	POST 	/net/api/sessions/create	 undefined
+2025-07-08	13:59:23		2fbbd3b5-99ab-45fd-a07d-632b9bb7b4dc		Error: Not Allowed by CORS 	POST 	/api/v1/admin//student/finance/payment/create	 chrome-extension://ihgpcfpkpmdcghlnaofdmjkoemnlijdi
+2025-07-08	13:59:30		f479b97b-60c5-40fb-9cbf-03f0b59995e5		Error: Not Allowed by CORS 	POST 	/api/v1/admin//student/finance/payment/create	 chrome-extension://ihgpcfpkpmdcghlnaofdmjkoemnlijdi

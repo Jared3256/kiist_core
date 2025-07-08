@@ -11,9 +11,6 @@ const ChangePassword = asyncHandler(async (req, res) => {
 
     const {password} = req.body
 
-    console.log(token, password)
-
-
     try {
         if (!password || !token || String(password).length < 8) {
             return res.status(411).json({

@@ -6,9 +6,6 @@ const StudentSubmitCat = asyncHandler(async (req, res) => {
     const {id} = req.params;
     const {student, questions, semester, code} = req.body;
 
-    console.log(req.body)
-
-
     if (!code || !id || !student || String(id).length !== 24 || String(student).length !== 24 || id !== student || !semester) {
         return res.status(411).json({
             message: "Invalid Student ID"

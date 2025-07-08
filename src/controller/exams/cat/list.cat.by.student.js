@@ -27,14 +27,12 @@ const ListCatByStudent = asyncHandler(async (req, res) => {
 
         const modifiedResults = await Promise.all(
             foundCats.map(async (result) => {
-                console.log(result._doc.code, await CourseModel.findById(result._doc.code))
                 return {
                     ...result._doc,
                 }
             })
         )
 
-        console.log(modifiedResults)
         return res.status(200).json({
             message: "found all of your cats",
             success: true,

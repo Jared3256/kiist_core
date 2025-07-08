@@ -10,7 +10,6 @@ import {mailtrap_client, mailtrap_sender} from "./mailtrap.config.js";
 const sendVerificationEmail = async (email, verificationToken) => {
     const recipient = [{email}];
 
-    console.log(recipient);
     try {
         const mailOptions = {
             from: mailtrap_sender,
