@@ -1,7 +1,6 @@
 import asyncHandler from "express-async-handler";
 import StudentAttendanceModel from "../../../models/student/student.attendance.js";
 import UnitRegistrationModel from "../../../models/units/unit.model.js";
-import studentProfileModel from "../../../models/student/student.js";
 import {differenceInWeeks} from "date-fns";
 import userModel from "../../../models/app/user.model.js";
 
