@@ -77,4 +77,5 @@ adminRouter.post("/grade/edit", createAdminGradeMiddlewareController.edit)
 adminRouter.get("/student/finance/info/list", createAdminMiddleware.student_finance_info)
 adminRouter.get("/student/finance/history/list", createAdminMiddleware.student_finance_history)
 adminRouter.post("/student/finance/payment/create", createAdminMiddleware.student_finance_create)
+adminRouter.post("/student/finance/reminder/create", createAdminMiddleware.student_finance_email_reminder)
 export default adminRouter;

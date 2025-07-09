@@ -1,8 +1,10 @@
 import {
+    LEC_WELCOME_TEMPLATE,
     PASSWORD_RESET_REQUEST_TEMPLATE,
     PASSWORD_RESET_SUCCESS_TEMPLATE,
+    REPORT_TEMPLATE,
+    STUDENT_FEE_REMINDER,
     VERIFICATION_EMAIL_TEMPLATE,
-    REPORT_TEMPLATE, LEC_WELCOME_TEMPLATE,
 } from "./emailTemplate.js";
 import {mailtrap_client, mailtrap_sender} from "./mailtrap.config.js";
 
@@ -149,7 +151,39 @@ const sendErrorFoundEmail = async (email, error, info) => {
     }
 };
 
+
+const sendStudentFeeReminder = async (email, name, amount_charged, amount_paid, balance, balance_text) => {
+    const recipient = [{email}];
+
+    try {
+        const mailOptions = {
+            from: mailtrap_sender,
+            to: recipient,
+            subject: "Fee Payment Reminder",
+            html: STUDENT_FEE_REMINDER.replaceAll("{{balance_text}}", balance_text).replaceAll(
+                "{{name}}",
+                name
+            ).replaceAll("{{balance}}", balance).replaceAll("{{amount_paid}}", amount_paid).replaceAll("{{amount_charged}}", amount_charged),
+            category: "Fee Reminder",
+        };
+
+        // Sanitize the mailOptions object
+        Object.keys(mailOptions).forEach((key) => {
+            if (typeof mailOptions[key] === "string") {
+                mailOptions[key] = mailOptions[key]
+                    .trim()
+                    .replace(/[\u0080-\uFFFF]/g, "");
+            }
+        });
+
+        return await mailtrap_client.send(mailOptions)
+    } catch (error) {
+
+        throw new Error(`Error sending fee reminder email: ${error}`);
+    }
+}
 export {
+    sendStudentFeeReminder,
     sendLecWelcomeEmail,
     sendPasswordResetEmail,
     sendResetSuccessEmail,
