@@ -401,7 +401,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
   <tr>
     <td class="v-text-align" style="padding-right: 0px;padding-left: 0px;" align="center">
       
-      <img align="center" border="0" src="https://kiist.vercel.app/public/images/image-1.png" alt="Logo" title="Logo" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 100%;max-width: 100px;" width="100"/>
+      <img align="center" border="0" src="https://kiist-core-production.up.railway.app/public/images/image-1.png" alt="Logo" title="Logo" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 100%;max-width: 100px;" width="100"/>
       
     </td>
   </tr>
@@ -444,7 +444,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
   <tr>
     <td class="v-text-align" style="padding-right: 0px;padding-left: 0px;" align="center">
       
-      <img align="center" border="0" src="https://kiist.vercel.app/public/images/image-2.png" alt="Hero Image" title="Hero Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 100%;max-width: 600px;" width="600"/>
+      <img align="center" border="0" src="https://kiist-core-production.up.railway.app/public/images/image-2.png" alt="Hero Image" title="Hero Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 100%;max-width: 600px;" width="600"/>
       
     </td>
   </tr>
@@ -498,7 +498,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
       <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:0px 10px 10px 15px;font-family:'Montserrat',sans-serif;" align="left">
         
   <div class="v-text-align" style="font-size: 14px; color: #34495e; line-height: 150%; text-align: left; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 150%; margin: 0px;"><span style="font-family: Lato, sans-serif; font-size: 14px; line-height: 21px;"><span style="font-size: 16px; line-height: 24px;">&nbsp;This is a reminder to clear up your pending balance of <strong><span style="color: #e67e23; font-size: 16px; line-height: 24px;">&nbsp;Ksh. {{balance}},  ( {{balance_text}} ) only.</span></strong></span></span></p>
+    <p style="font-size: 14px; line-height: 150%; margin: 0px;"><span style="font-family: Lato, sans-serif; font-size: 14px; line-height: 21px;"><span style="font-size: 16px; line-height: 24px;">&nbsp;This is a reminder to clear up your pending balance of <strong><span style="color: #e67e23; font-size: 16px; line-height: 24px;">&nbsp;Ksh. {{balance}},  ( {{balance_text}} shillings only.)</span></strong></span></span></p>
 <p style="font-size: 14px; line-height: 150%; margin: 0px;">&nbsp;</p>
 <p style="font-size: 14px; line-height: 150%; margin: 0px;"><span style="font-family: Lato, sans-serif; font-size: 14px; line-height: 21px;"><span style="font-size: 16px; line-height: 24px;">Below is your summary of the amount charged, paid and balance as at today. </span></span></p>
   </div>
@@ -1115,7 +1115,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
       <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px 10px 30px 15px;font-family:'Montserrat',sans-serif;" align="left">
         
   <div class="v-text-align" style="font-size: 14px; line-height: 140%; text-align: left; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%; margin: 0px;"><span style="font-size: 16px; line-height: 22.4px;">Thanks,</span><br><span style="font-size: 16px; line-height: 22.4px;">{{name}},</span></p>
+    <p style="font-size: 14px; line-height: 140%; margin: 0px;"><span style="font-size: 16px; line-height: 22.4px;">Thanks,</span><br><span style="font-size: 16px; line-height: 22.4px;">Mr. Patrick Nyabayo<br>Kisii Impact | Finance</span></p>
 <p style="font-size: 14px; line-height: 140%; margin: 0px;">&nbsp;</p>
   </div>
 
