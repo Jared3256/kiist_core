@@ -2,6 +2,7 @@ export const allowedOrigins = [
     "http://localhost:3000",
     "http://localhost:5173",
     "https://kiist.vercel.app",
+    "https://kiist.ac.ke",
     "196.201.214.200",
     "196.201.214.206",
     "196.201.213.114",
