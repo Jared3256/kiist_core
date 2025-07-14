@@ -6,9 +6,15 @@ import AdminStudentFinanceInformation from "./student/admin.student.finance.info
 import AdminStudentFinancePaymentHistory from "./student/admin.student.finance.payment.history.js";
 import AdminStudentFinancePostPayment from "./student/admin.student.finance.post.payment.js";
 import AdminStudentFinanceReminderEmail from "./student/admin.student.finance.reminder.email.js";
+import AdminRegistration from "./admin.registration.js";
 
 const createAdminMiddleware = () => {
     const methods = {}
+    /**
+     * Admin Initial Payment
+     */
+    methods.admin_register = (req, res) => AdminRegistration(req, res)
+
     methods.files = (req, res) => UploadAdminFiles(req, res)
     methods.student_list = (req, res) => AdminStudentList(req, res)
     methods.student_remove = (req, res) => AdminStudentRemove(req, res)

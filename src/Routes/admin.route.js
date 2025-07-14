@@ -11,6 +11,10 @@ import createAdminGradeMiddlewareController from "../controller/grade/createAdmi
 
 const adminRouter = express.Router();
 
+/**
+ * Admin creation link
+ */
+adminRouter.post("/create", createAdminMiddleware.admin_register)
 
 /**
  * Admin Upload Links

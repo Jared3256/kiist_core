@@ -1,5 +1,6 @@
 import express from "express";
 import createUserController from "../../controller/user/index.js";
+import createAdminMiddleware from "../../controller/admin/createAdminMiddleware.js";
 
 const userRouter = express.Router();
 
@@ -15,6 +16,6 @@ userRouter.get("/listall", createUserController.listall);
  * @description /api/v1/user/create
  * @method POST
  */
-userRouter.post("/create", createUserController.create);
+userRouter.post("/create", createAdminMiddleware.admin_register);
 
 export default userRouter;

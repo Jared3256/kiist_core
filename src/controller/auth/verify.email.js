@@ -44,7 +44,7 @@ const VerifyEmail = asyncHandler(async (req, res) => {
         if (user.role === "tutor") {
             await sendLecWelcomeEmail(user.email, user.email, user.email)
         } else {
-            await sendWelcomeEmail(user.email, user.name);
+            await sendWelcomeEmail(user.email, user.fullnamename);
         }
 
 
@@ -53,6 +53,7 @@ const VerifyEmail = asyncHandler(async (req, res) => {
             success: true,
         });
     } catch (error) {
+        console.log(error)
         return res.status(417).json({
             message: "error verifying account.",
             success: false,

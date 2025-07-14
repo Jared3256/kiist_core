@@ -17,6 +17,7 @@ const userSchema = new mongoose.Schema(
             trim: true,
             lowercase: true,
         },
+        phoneNumber: {type: String, unique: true, trim: true},
         regNumber: {type: String, unique: true, trim: true},
         fullname: {
             type: String,
@@ -29,7 +30,7 @@ const userSchema = new mongoose.Schema(
         },
         role: {
             type: String,
-            enum: ["admin", "tutor", "student"],
+            enum: ["superadmin", "admin", "tutor", "student"],
             required: true,
             default: "user",
         },
