@@ -74,7 +74,7 @@ const submitStudentApplication = asyncHandler(async (req, res) => {
 
     // Initialize the student finance Model
     await StudentFinanceInitiator(
-        profile._id, res
+        profile, res
     )
     // Call StudentUser
     await RegisterStudentAsUser(
@@ -90,7 +90,6 @@ const submitStudentApplication = asyncHandler(async (req, res) => {
         profile.role,
         res
     );
-
 
 
 });

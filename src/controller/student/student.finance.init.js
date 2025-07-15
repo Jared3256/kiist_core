@@ -4,8 +4,17 @@ import StudentFinanceModel from "../../models/student/student.finance.js";
 const StudentFinanceInitiator = asyncHandler(async (studentId, res) => {
 
     try {
+        //Check the student academic level and initiate FinanceModel with the standard flow
+        let amount = 0;
+        if (studentId.programSelection.level === "DIP") {
+            amount = 20000
+        } else {
+            amount = 18000
+        }
+        
         const result = await new StudentFinanceModel({
-            student: studentId,
+            student: studentId._id,
+            total_fee: amount
         }).save()
 
         if (!result) {

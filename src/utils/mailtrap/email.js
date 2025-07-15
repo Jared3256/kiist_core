@@ -84,7 +84,7 @@ const sendWelcomeEmail = async (email, name) => {
             html: STUDENT_WELCOME_TEMPLATE.replace(
                 "{{student_name}}",
                 name
-            ),
+            ).replace("{{username}}", email),
             category: "Welcome Email",
         };
 

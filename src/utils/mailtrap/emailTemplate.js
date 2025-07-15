@@ -287,8 +287,27 @@ const STUDENT_WELCOME_TEMPLATE = `
                 </tr>
               </table>
 
+ <p style="Margin:0 0 16px;font-size:16px;color:#333333;line-height:1.5;">
+                To login please use the following as your initial logins. 
+              </p>
+              
+              
+              <!-- Call to Action Buttons -->
+              <table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;margin-bottom:24px;">
+                <tr>
+                  <td align="center">
+                    Username / Registration Number : {{username}}
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center">
+                    Password : #use your national id.
+                    
+                  </td>
+                </tr>
+              </table>
               <p style="Margin:0 0 16px;font-size:16px;color:#333333;line-height:1.5;">
-                If you have any questions, feel free to reply to this email or visit our <a href="mailto:support@kiist.ac.ke" style="color:#4A90E2;text-decoration:none;">Support Center</a>. We're here to help!
+                If you have any questions, feel free to reply to this email or visit our <a href="mailto:support@kiist.ac.ke" style="color:#4A90E2;text-decoration:none;">Support Center</a> or on 078040762. We're here to help!
               </p>
               
               <p style="Margin:0;font-size:16px;color:#333333;line-height:1.5;">
