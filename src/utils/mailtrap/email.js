@@ -3,7 +3,7 @@ import {
     PASSWORD_RESET_REQUEST_TEMPLATE,
     PASSWORD_RESET_SUCCESS_TEMPLATE,
     REPORT_TEMPLATE,
-    STUDENT_FEE_REMINDER,
+    STUDENT_FEE_REMINDER, STUDENT_WELCOME_TEMPLATE,
     VERIFICATION_EMAIL_TEMPLATE,
 } from "./emailTemplate.js";
 import {mailtrap_client, mailtrap_sender} from "./mailtrap.config.js";
@@ -76,25 +76,34 @@ const sendLecWelcomeEmail = async (email, username, password) => {
 
 const sendWelcomeEmail = async (email, name) => {
     const recipient = [{email}];
-
     try {
-        const response = await mailtrap_client.send({
+        const mailOptions = {
             from: mailtrap_sender,
             to: recipient,
-            template_uuid: "0b9faee6-397f-4d74-8547-cb60051c266c",
-            template_variables: {
-                company_info_name: "Kisii Impact Institute of Science and Technology",
-                name: name,
-                company_info_address: "Po Box 126",
-                company_info_city: "Kisii",
-                company_info_zip_code: "40332",
-                company_info_country: "Kenya",
-            },
+            subject: "Welcome To Kisii Impact Institute",
+            html: STUDENT_WELCOME_TEMPLATE.replace(
+                "{{student_name}}",
+                name
+            ),
+            category: "Welcome Email",
+        };
+
+        // Sanitize the mailOptions object
+        Object.keys(mailOptions).forEach((key) => {
+            if (typeof mailOptions[key] === "string") {
+                mailOptions[key] = mailOptions[key]
+                    .trim()
+                    .replace(/[\u0080-\uFFFF]/g, "");
+            }
         });
 
-    } catch (error) {
+        const response = await mailtrap_client.send(mailOptions);
+        return response
 
-        throw new Error(`Error sending welcome email: ${error}`);
+    } catch (error) {
+        console.error(`Error sending verification`, error);
+
+        throw new Error(`Error sending verification email: ${error}`);
     }
 };
 

@@ -43,8 +43,8 @@ const VerifyEmail = asyncHandler(async (req, res) => {
 
         if (user.role === "tutor") {
             await sendLecWelcomeEmail(user.email, user.email, user.email)
-        } else {
-            await sendWelcomeEmail(user.email, user.fullnamename);
+        } else if (user.role === "student") {
+            await sendWelcomeEmail(user.email, user.fullname);
         }
 
 

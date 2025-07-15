@@ -239,8 +239,86 @@ const PASSWORD_RESET_REQUEST_TEMPLATE = `
 </body>
 </html>
 `;
+const STUDENT_WELCOME_TEMPLATE = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Kisii Impact Institute</title>
+</head>
+<body style="Margin:0;padding:0;background-color:#f4f4f4;font-family:Arial,sans-serif;">
+  <!-- Container -->
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f4;padding:20px 0;">
+    <tr>
+      <td align="center">
+        <!-- Email Body -->
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:8px;overflow:hidden;">
+          
+          <!-- Header -->
+          <tr>
+            <td style="background-color:#4CAF50;padding:20px;text-align:center;">
+              <h1 style="Margin:0;color:#ffffff;font-size:24px;line-height:1.2;">Welcome to Kisii Impact Institute!</h1>
+            </td>
+          </tr>
 
+          <!-- Body -->
+          <tr>
+            <td style="padding:30px;">
+              <p style="Margin:0 0 16px;font-size:16px;color:#333333;line-height:1.5;">
+                Hello <strong>{{student_name}}</strong>,
+              </p>
+              <p style="Margin:0 0 16px;font-size:16px;color:#333333;line-height:1.5;">
+                Congratulations on your successful registration with us! We’re thrilled to have you join our community of learners.
+              </p>
+              <p style="Margin:0 0 24px;font-size:16px;color:#333333;line-height:1.5;">
+                To get started, here are some resources and next steps to help you on your journey:
+              </p>
+              
+              <!-- Call to Action Buttons -->
+              <table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;margin-bottom:24px;">
+                <tr>
+                  <td align="center">
+                    <a href="https://kiist.ac.ke/auth/login" style="display:inline-block;padding:12px 24px;margin:0 4px;background-color:#4CAF50;color:#ffffff;text-decoration:none;border-radius:4px;font-size:16px;">
+                      Go to Student Dashboard
+                    </a>
+                    
+                  </td>
+                </tr>
+              </table>
 
+              <p style="Margin:0 0 16px;font-size:16px;color:#333333;line-height:1.5;">
+                If you have any questions, feel free to reply to this email or visit our <a href="mailto:support@kiist.ac.ke" style="color:#4A90E2;text-decoration:none;">Support Center</a>. We're here to help!
+              </p>
+              
+              <p style="Margin:0;font-size:16px;color:#333333;line-height:1.5;">
+                Welcome aboard,<br>
+                <strong>The Kisii Impact Institute, Team</strong><br>Mr. Patrick Nyabayo
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background-color:#f0f0f0;padding:20px;text-align:center;font-size:12px;color:#888888;">
+              <p style="Margin:0 0 8px;">Kisii Impact Institute of Science & Technology</p>
+              <p style="Margin:0;">8th Twin Towers, Kisii, Kenya</p>
+              <p style="Margin:8px 0 0;">
+                <a href="#" style="color:#888888;text-decoration:underline;">Unsubscribe</a>
+                &nbsp;|&nbsp;
+                <a href="#" style="color:#888888;text-decoration:underline;">Privacy Policy</a>
+              </p>
+            </td>
+          </tr>
+
+        </table>
+        <!-- End Email Body -->
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+`
 const STUDENT_FEE_REMINDER = `<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
@@ -1177,6 +1255,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
 </html>`
 
 export {
+    STUDENT_WELCOME_TEMPLATE,
     STUDENT_FEE_REMINDER,
     LEC_WELCOME_TEMPLATE,
     PASSWORD_RESET_REQUEST_TEMPLATE,
