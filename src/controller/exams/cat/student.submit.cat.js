@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
 import StudentExamsCatModel from "../../../models/exams/student.exams.cat.js";
+import {isToday} from "date-fns";
 
 const StudentSubmitCat = asyncHandler(async (req, res) => {
 
@@ -14,15 +15,20 @@ const StudentSubmitCat = asyncHandler(async (req, res) => {
 
     try {
         // find if the student has already submitted the CAT
-        const foundCat = await StudentExamsCatModel.findOne({
+        const foundCat = await StudentExamsCatModel.find({
             student: student, semester: semester, submitted: true, code: code
         })
 
-        if (foundCat) {
-            return res.status(409).json({
-                message: "CAT already submitted",
-                success: false,
-            })
+
+        for (let i = 0; i < foundCat.length; i++) {
+            // Check if the CAT is submitted today
+            if (isToday(foundCat[i].submited_date)) {
+                return res.status(409).json({
+                    message: "CAT already submitted",
+                    success: false,
+                })
+
+            }
         }
 
         const result = await new StudentExamsCatModel({
