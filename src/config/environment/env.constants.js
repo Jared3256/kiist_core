@@ -10,6 +10,7 @@ const system_data = {
     PRODUCTION_DATABASE_URI: process.env.PRODUCTION_DATABASE_URI,
     NODE_ENV: environment,
     BEARER: process.env.Bearer,
+    TIMESTAMP: process.env.TIMESTAMP,
     AUTHORIZATION_URI: process.env.AUTHORIZATION_URI,
     C2B_REGISTER_URL: process.env.C2B_REGISTER_URL,
     STKPUSH_URI: process.env.STKPUSH_URI,

@@ -8,8 +8,7 @@ const daraja_authorization = asyncHandler(async (req, res) => {
             Authorization: `Basic ${system_data.BEARER}`,
         },
     });
-
-
+    
     return server_response.data.access_token;
 });
 
