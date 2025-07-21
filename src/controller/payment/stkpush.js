@@ -73,8 +73,7 @@ const daraja_stkpush = asyncHandler(async (req, res) => {
             data: "check your mpesa for confirmation of the payment",
         });
     } catch (e) {
-
-
+        console.log(e)
         return res.status(422).json({
             message: "Unable to initiate payment",
             data: null,

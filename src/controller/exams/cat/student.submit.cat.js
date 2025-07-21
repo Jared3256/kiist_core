@@ -29,6 +29,9 @@ const StudentSubmitCat = asyncHandler(async (req, res) => {
                 })
 
             }
+            if (isToday(foundCat[i].submited_date)) {
+                break
+            }
         }
 
         const result = await new StudentExamsCatModel({
