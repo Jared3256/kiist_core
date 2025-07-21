@@ -6,6 +6,20 @@ import StudentPaymentHistoryModel from "../../models/student/student.payment.his
 import studentProfileModel from "../../models/student/student.js";
 import C2B_Register_url from "./register.completion.url.js";
 
+
+function generateTimestamp() {
+    const now = new Date();
+
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+    const day = String(now.getDate()).padStart(2, '0');
+    const hour = String(now.getHours()).padStart(2, '0');
+    const minute = String(now.getMinutes()).padStart(2, '0');
+    const second = String(now.getSeconds()).padStart(2, '0');
+
+    return `${year}${month}${day}${hour}${minute}${second}`;
+}
+
 const daraja_stkpush = asyncHandler(async (req, res) => {
 
     const {amount, phone, id} = req.body;
@@ -38,7 +52,7 @@ const daraja_stkpush = asyncHandler(async (req, res) => {
             {
                 "BusinessShortCode": 174379,
                 "Password": system_data.PASSWORD,
-                "Timestamp": "20250619125540",
+                "Timestamp": generateTimestamp(),
                 "TransactionType": "CustomerPayBillOnline",
                 "Amount": amount,
                 "PartyA": phone,
