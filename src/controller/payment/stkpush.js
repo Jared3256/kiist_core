@@ -52,7 +52,7 @@ const daraja_stkpush = asyncHandler(async (req, res) => {
                 "PartyB": 174379,
                 "PhoneNumber": phone,
                 "CallBackURL": system_data.DEV_CALLBACK_URI,
-                "AccountReference": foundStudent.registrationNumber,
+                "AccountReference": `${foundStudent.registrationNumber} - ${foundStudent.personalDetails.firstname}`,
                 "TransactionDesc": "Payment of School fee"
             },
             {
