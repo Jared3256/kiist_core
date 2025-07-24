@@ -5,6 +5,7 @@ import system_data from "../../config/environment/env.constants.js";
 import StudentPaymentHistoryModel from "../../models/student/student.payment.history.js";
 import studentProfileModel from "../../models/student/student.js";
 import C2B_Register_url from "./register.completion.url.js";
+import {isToday} from "date-fns";
 
 const daraja_stkpush = asyncHandler(async (req, res) => {
 
@@ -24,6 +25,16 @@ const daraja_stkpush = asyncHandler(async (req, res) => {
         if (!id || !amount || !phone || String(id).length !== 24) {
             return res.status(411).json({
                 message: "Invalid details received",
+                success: false
+            })
+        }
+
+        // create the date object and make sure it is tdy
+        const my_date = new Date();
+
+        if (!isToday(my_date)) {
+            return res.status(422).json({
+                message: "Unable to initiate Payment. Dates are mismatching, if problem persist, contact system administrator",
                 success: false
             })
         }
@@ -67,7 +78,8 @@ const daraja_stkpush = asyncHandler(async (req, res) => {
             student: id,
             receiptId: server_response.data.MerchantRequestID,
             amount: amount,
-            payment: "Mpesa"
+            payment: "Mpesa",
+            paymentDate: my_date
         }).save()
 
         if (!result) {
