@@ -67,8 +67,8 @@ const daraja_stkpush = asyncHandler(async (req, res) => {
         const token = await daraja_authorization(req, res);
 
         const TIMESTAMP = generateTimestamp()
-        const PASSWORD = Buffer.from(`${system_data.SHORT_CODE}${system_data.PASSKEY}${timestamp}`).toString('base64');
-        
+        const PASSWORD = Buffer.from(`${system_data.SHORT_CODE}${system_data.PASSKEY}${TIMESTAMP}`).toString('base64');
+
         const server_response = await axios.post(
             system_data.STKPUSH_URI,
             {
@@ -110,7 +110,7 @@ const daraja_stkpush = asyncHandler(async (req, res) => {
             data: "check your mpesa for confirmation of the payment",
         });
     } catch (e) {
-        console.log(e.response.data)
+        console.log(e)
         return res.status(422).json({
             message: "Unable to initiate payment",
             data: null,
