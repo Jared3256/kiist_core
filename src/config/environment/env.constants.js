@@ -21,6 +21,7 @@ const system_data = {
             ? process.env.DEV_CALLBACK_URI
             : process.env.PROD_CALLBACK_URI
     }`,
+    PASSKEY: process.env.PASSKEY,
     SHORT_CODE: process.env.SHORT_CODE,
     FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
     FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN,

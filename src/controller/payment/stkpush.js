@@ -7,6 +7,20 @@ import studentProfileModel from "../../models/student/student.js";
 import C2B_Register_url from "./register.completion.url.js";
 import {isToday} from "date-fns";
 
+
+function generateTimestamp() {
+    const now = new Date();
+
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+    const day = String(now.getDate()).padStart(2, '0');
+    const hour = String(now.getHours()).padStart(2, '0');
+    const minute = String(now.getMinutes()).padStart(2, '0');
+    const second = String(now.getSeconds()).padStart(2, '0');
+
+    return `${year}${month}${day}${hour}${minute}${second}`;
+}
+
 const daraja_stkpush = asyncHandler(async (req, res) => {
 
     const {amount, phone, id} = req.body;
@@ -51,16 +65,20 @@ const daraja_stkpush = asyncHandler(async (req, res) => {
 
 
         const token = await daraja_authorization(req, res);
+
+        const TIMESTAMP = generateTimestamp()
+        const PASSWORD = Buffer.from(`${system_data.SHORT_CODE}${system_data.PASSKEY}${timestamp}`).toString('base64');
+        
         const server_response = await axios.post(
             system_data.STKPUSH_URI,
             {
-                "BusinessShortCode": 174379,
-                "Password": String(system_data.PASSWORD),
-                "Timestamp": String(system_data.TIMESTAMP),
+                "BusinessShortCode": system_data.SHORT_CODE,
+                "Password": String(PASSWORD),
+                "Timestamp": String(TIMESTAMP),
                 "TransactionType": "CustomerPayBillOnline",
                 "Amount": amount,
                 "PartyA": phone,
-                "PartyB": 174379,
+                "PartyB": system_data.SHORT_CODE,
                 "PhoneNumber": phone,
                 "CallBackURL": system_data.DEV_CALLBACK_URI,
                 "AccountReference": `${foundStudent.registrationNumber} - ${foundStudent.personalDetails.firstname}`,
