@@ -34,7 +34,7 @@ app.use(notFound);
 
 const serverApp = http.createServer(app);
 
-// socket IO connection
+// socket IO connection fggfg
 const io = new SocketIo(serverApp, {cors: {origin: '*'}});
 
 io.on('connection', (socket) => {
